@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ExternalLink, ArrowUpRight, CheckCircle2, Sparkles, FolderGit2 } from 'lucide-react';
+import { ExternalLink, ArrowUpRight, CheckCircle2, Sparkles } from 'lucide-react';
 import { GithubIcon } from '@/components/ui/BrandIcons';
 import { Project } from '@/data/portfolioData';
 
@@ -22,13 +22,13 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     setReducedMotion(mediaQuery.matches);
   }, []);
 
-  // 3D Tilt calculation
+  // 3D Tilt calculation (only active when hovered to keep scrolling 60fps)
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springConfig = { damping: 20, stiffness: 200, mass: 0.5 };
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [6, -6]), springConfig);
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-6, 6]), springConfig);
+  const springConfig = { damping: 25, stiffness: 300, mass: 0.2 };
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), springConfig);
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), springConfig);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (reducedMotion || !cardRef.current) return;
@@ -37,6 +37,10 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     const y = (e.clientY - rect.top) / rect.height - 0.5;
     mouseX.set(x);
     mouseY.set(y);
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
@@ -51,30 +55,30 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     <>
       <motion.div
         ref={cardRef}
-        initial={{ opacity: 0, y: 30, scale: 0.98 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, margin: '-50px' }}
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-40px' }}
         transition={{
-          duration: 0.6,
-          delay: (index % 3) * 0.1,
+          duration: 0.5,
+          delay: (index % 3) * 0.08,
           ease: [0.16, 1, 0.3, 1],
         }}
         onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovered(true)}
+        onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         style={{
-          perspective: 1000,
-          rotateX: reducedMotion ? 0 : rotateX,
-          rotateY: reducedMotion ? 0 : rotateY,
+          perspective: isHovered ? 1000 : undefined,
+          rotateX: isHovered && !reducedMotion ? rotateX : 0,
+          rotateY: isHovered && !reducedMotion ? rotateY : 0,
         }}
-        className={`group relative flex flex-col h-full rounded-2xl liquid-glass-card p-6 sm:p-8 cursor-pointer transition-all duration-300 ${
-          isFlagship ? 'border-2 border-[#5C1A28]/30 shadow-lg' : ''
+        className={`group relative flex flex-col h-full rounded-2xl liquid-glass-card p-6 sm:p-8 cursor-pointer ${
+          isFlagship ? 'border-2 border-[#5C1A28]/30 shadow-md' : ''
         }`}
         onClick={() => setIsModalOpen(true)}
       >
         {/* Ambient Warm Glow on Hover */}
         <div
-          className={`absolute inset-0 rounded-2xl bg-gradient-to-br from-[#5C1A28]/8 via-[#FAF6EE]/40 to-transparent pointer-events-none transition-opacity duration-500 ${
+          className={`absolute inset-0 rounded-2xl bg-gradient-to-br from-[#5C1A28]/6 via-transparent to-transparent pointer-events-none transition-opacity duration-300 ${
             isHovered ? 'opacity-100' : 'opacity-0'
           }`}
         />
@@ -153,14 +157,14 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       {/* Detail Modal */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1E1B14]/60 backdrop-blur-md animate-fadeIn"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1E1B14]/60 backdrop-blur-sm"
           onClick={() => setIsModalOpen(false)}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.96, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, scale: 0.96, y: 16 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="relative w-full max-w-2xl rounded-2xl bg-[#FFF8EF] border border-[#5C1A28]/20 p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >

@@ -24,9 +24,9 @@ export default function HardwareCard({ project, index }: HardwareCardProps) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springConfig = { damping: 20, stiffness: 200, mass: 0.5 };
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [6, -6]), springConfig);
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-6, 6]), springConfig);
+  const springConfig = { damping: 25, stiffness: 300, mass: 0.2 };
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), springConfig);
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), springConfig);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (reducedMotion || !cardRef.current) return;
@@ -35,6 +35,10 @@ export default function HardwareCard({ project, index }: HardwareCardProps) {
     const y = (e.clientY - rect.top) / rect.height - 0.5;
     mouseX.set(x);
     mouseY.set(y);
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
@@ -47,32 +51,32 @@ export default function HardwareCard({ project, index }: HardwareCardProps) {
     <>
       <motion.div
         ref={cardRef}
-        initial={{ opacity: 0, y: 30, scale: 0.98 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, margin: '-50px' }}
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-40px' }}
         transition={{
-          duration: 0.6,
-          delay: (index % 2) * 0.12,
+          duration: 0.5,
+          delay: (index % 2) * 0.1,
           ease: [0.16, 1, 0.3, 1],
         }}
         onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovered(true)}
+        onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         style={{
-          perspective: 1000,
-          rotateX: reducedMotion ? 0 : rotateX,
-          rotateY: reducedMotion ? 0 : rotateY,
+          perspective: isHovered ? 1000 : undefined,
+          rotateX: isHovered && !reducedMotion ? rotateX : 0,
+          rotateY: isHovered && !reducedMotion ? rotateY : 0,
         }}
-        className="group relative flex flex-col h-full rounded-2xl liquid-glass-maroon p-6 sm:p-8 cursor-pointer transition-all duration-300 border border-[#5C1A28]/20 overflow-hidden"
+        className="group relative flex flex-col h-full rounded-2xl liquid-glass-maroon p-6 sm:p-8 cursor-pointer border border-[#5C1A28]/20 overflow-hidden"
         onClick={() => setIsModalOpen(true)}
       >
         {/* Schematic Grid Background */}
-        <div className="absolute inset-0 blueprint-bg opacity-30 pointer-events-none" />
+        <div className="absolute inset-0 blueprint-bg opacity-25 pointer-events-none" />
 
         {/* Ambient Corner Accent Lines */}
         <div className="absolute top-0 right-0 w-16 h-16 pointer-events-none">
-          <div className="absolute top-3 right-3 w-8 h-[1px] bg-[#5C1A28]/40" />
-          <div className="absolute top-3 right-3 w-[1px] h-8 bg-[#5C1A28]/40" />
+          <div className="absolute top-3 right-3 w-8 h-[1px] bg-[#5C1A28]/30" />
+          <div className="absolute top-3 right-3 w-[1px] h-8 bg-[#5C1A28]/30" />
         </div>
 
         {/* Card Header & Schematic Tag */}
@@ -124,14 +128,14 @@ export default function HardwareCard({ project, index }: HardwareCardProps) {
       {/* Detail Modal */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1E1B14]/65 backdrop-blur-md animate-fadeIn"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1E1B14]/65 backdrop-blur-sm"
           onClick={() => setIsModalOpen(false)}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.96, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, scale: 0.96, y: 16 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="relative w-full max-w-2xl rounded-2xl bg-[#FAF3E7] border border-[#5C1A28]/30 p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >

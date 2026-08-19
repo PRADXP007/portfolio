@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 export default function WebGLHeroShader() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [webglSupported, setWebglSupported] = useState(true);
 
@@ -15,11 +16,12 @@ export default function WebGLHeroShader() {
     }
 
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
 
     let gl: WebGLRenderingContext | null = null;
     try {
-      gl = canvas.getContext('webgl', { powerPreference: 'low-power', alpha: true }) || 
+      gl = canvas.getContext('webgl', { powerPreference: 'low-power', alpha: true, depth: false, antialias: false }) || 
            (canvas.getContext('experimental-webgl') as WebGLRenderingContext | null);
     } catch {
       setWebglSupported(false);
@@ -31,12 +33,26 @@ export default function WebGLHeroShader() {
       return;
     }
 
-    let animationFrameId: number;
+    let animationFrameId: number | null = null;
     let isMounted = true;
+    let isVisible = true;
+
+    // Pause rendering when Hero is out of viewport to eliminate scroll lag
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        isVisible = entry.isIntersecting;
+        if (isVisible && !animationFrameId) {
+          animationFrameId = requestAnimationFrame(render);
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(container);
 
     function syncSize() {
       if (!canvas || !gl) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
       const w = Math.floor((canvas.clientWidth || 1280) * dpr);
       const h = Math.floor((canvas.clientHeight || 720) * dpr);
       if (canvas.width !== w || canvas.height !== h) {
@@ -72,25 +88,21 @@ export default function WebGLHeroShader() {
         vec2 aspect = vec2(u_resolution.x / u_resolution.y, 1.0);
         vec2 st = uv * aspect;
         
-        // Circuit board motif with slow subtle flow
         float line_width = 0.0035;
         float grid_size = 0.08;
         
         vec2 grid = fract(st / grid_size);
         float lines = step(grid.x, line_width) + step(grid.y, line_width);
         
-        // Pulsing nodes at intersections
         vec2 node_pos = floor(st / grid_size) * grid_size + grid_size * 0.5;
         float dist = length(st - node_pos);
         
-        // Mouse reactivity
         vec2 mouse_st = (u_mouse / u_resolution) * aspect;
         float mouse_dist = length(st - mouse_st);
         float mouse_glow = smoothstep(0.35, 0.0, mouse_dist) * 0.15;
         
         float node = smoothstep(0.006, 0.002, dist) * (0.4 + 0.6 * sin(u_time * 1.5 + node_pos.x * 12.0 + node_pos.y * 8.0));
         
-        // Palette: Parchment #F3ECE0 to Maroon #5C1A28
         vec3 beige = vec3(0.953, 0.925, 0.878);
         vec3 maroon = vec3(0.36, 0.102, 0.157);
         
@@ -148,10 +160,10 @@ export default function WebGLHeroShader() {
     const mouse = { x: canvas.width / 2, y: canvas.height / 2 };
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!canvas) return;
+      if (!canvas || !isVisible) return;
       const rect = canvas.getBoundingClientRect();
       if (rect.width && rect.height) {
-        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
         mouse.x = (e.clientX - rect.left) * dpr;
         mouse.y = (rect.height - (e.clientY - rect.top)) * dpr;
       }
@@ -161,6 +173,12 @@ export default function WebGLHeroShader() {
 
     function render(now: number) {
       if (!isMounted || !gl || !canvas) return;
+      
+      if (!isVisible) {
+        animationFrameId = null;
+        return;
+      }
+
       gl.viewport(0, 0, canvas.width, canvas.height);
 
       if (uTime) gl.uniform1f(uTime, now * 0.001);
@@ -175,8 +193,9 @@ export default function WebGLHeroShader() {
 
     return () => {
       isMounted = false;
+      observer.disconnect();
       window.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(animationFrameId);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
       resizeObserver.disconnect();
       if (gl && buffer && program) {
         gl.deleteBuffer(buffer);
@@ -194,7 +213,7 @@ export default function WebGLHeroShader() {
   }
 
   return (
-    <div className="absolute inset-0 pointer-events-none opacity-40 mix-blend-multiply overflow-hidden -z-10">
+    <div ref={containerRef} className="absolute inset-0 pointer-events-none opacity-40 mix-blend-multiply overflow-hidden -z-10">
       <canvas
         ref={canvasRef}
         className="w-full h-full block"

@@ -38,7 +38,6 @@
 }
 
 html {
-  scroll-behavior: auto; /* Handled smoothly by Lenis */
   background-color: #F3ECE0;
 }
 
@@ -46,81 +45,94 @@ body {
   background-color: #F3ECE0;
   color: #1E1B14;
   font-family: var(--font-sans);
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  position: relative;
 }
 
-/* Reusable Liquid Glass System */
+/* Static fixed noise overlay to eliminate scroll repainting */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  transform: translateZ(0);
+}
+
+/* High-Performance Liquid Glass System */
 .liquid-glass {
-  background: rgba(255, 248, 239, 0.6);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: rgba(255, 248, 239, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(92, 26, 40, 0.12);
-  box-shadow: 0 30px 60px -15px rgba(43, 13, 20, 0.04), 0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+  box-shadow: 0 20px 45px -10px rgba(43, 13, 20, 0.04);
+  transform: translateZ(0);
 }
 
 .liquid-glass-card {
-  background: rgba(255, 248, 239, 0.72);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 248, 239, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(92, 26, 40, 0.1);
-  box-shadow: 0 15px 35px -10px rgba(43, 13, 20, 0.03), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 25px -8px rgba(43, 13, 20, 0.03);
+  transform: translateZ(0);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .liquid-glass-card:hover {
   border-color: rgba(92, 26, 40, 0.25);
-  box-shadow: 0 30px 60px -15px rgba(92, 26, 40, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  box-shadow: 0 20px 45px -10px rgba(92, 26, 40, 0.07);
 }
 
 .liquid-glass-maroon {
-  background: rgba(92, 26, 40, 0.04);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: rgba(250, 243, 231, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(92, 26, 40, 0.16);
-  box-shadow: 0 20px 45px -10px rgba(43, 13, 20, 0.06);
+  box-shadow: 0 15px 35px -10px rgba(43, 13, 20, 0.05);
+  transform: translateZ(0);
 }
 
 .liquid-glass-nav {
-  background: rgba(255, 248, 239, 0.75);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: rgba(255, 248, 239, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(92, 26, 40, 0.12);
-  box-shadow: 0 20px 40px -10px rgba(43, 13, 20, 0.06), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+  box-shadow: 0 15px 35px -10px rgba(43, 13, 20, 0.06);
+  transform: translateZ(0);
 }
 
 .chip-glass {
-  background: rgba(232, 220, 200, 0.55);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(232, 220, 200, 0.6);
   border: 1px solid rgba(92, 26, 40, 0.08);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.2s ease;
 }
 
 .chip-glass:hover {
   background: rgba(92, 26, 40, 0.08);
   border-color: rgba(92, 26, 40, 0.25);
   color: #400414;
-  transform: translateY(-1px);
 }
 
 /* Blueprint / Technical Schematic Grid */
 .blueprint-bg {
   background-image: 
-    linear-gradient(to right, rgba(92, 26, 40, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(92, 26, 40, 0.06) 1px, transparent 1px);
+    linear-gradient(to right, rgba(92, 26, 40, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(92, 26, 40, 0.05) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 .blueprint-bg-dense {
   background-image: 
-    linear-gradient(to right, rgba(92, 26, 40, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(92, 26, 40, 0.08) 1px, transparent 1px),
-    linear-gradient(to right, rgba(92, 26, 40, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(92, 26, 40, 0.03) 1px, transparent 1px);
-  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+    linear-gradient(to right, rgba(92, 26, 40, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(92, 26, 40, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 /* Timeline line styling */
