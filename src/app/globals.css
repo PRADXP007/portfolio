@@ -1,26 +1,153 @@
 @import "tailwindcss";
 
+@theme {
+  --color-parchment: #F3ECE0;
+  --color-parchment-light: #FAF6EE;
+  --color-parchment-dim: #E0D9CE;
+  --color-parchment-border: #D9C1C3;
+  
+  --color-maroon-primary: #400414;
+  --color-maroon-container: #5C1A28;
+  --color-maroon-accent: #7A2436;
+  --color-maroon-soft: #9D3F50;
+  --color-maroon-deep: #2B0D14;
+  
+  --color-surface-lowest: #FFFFFF;
+  --color-surface-low: #FAF3E7;
+  --color-surface-mid: #F4EDE1;
+  --color-surface-high: #EEE7DB;
+  --color-surface-highest: #E8E2D6;
+  
+  --color-ink-primary: #1E1B14;
+  --color-ink-secondary: #534344;
+  --color-ink-muted: #867274;
+
+  --font-serif: var(--font-eb-garamond), 'EB Garamond', Georgia, serif;
+  --font-sans: var(--font-manrope), 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F3ECE0;
+  --foreground: #1E1B14;
+  --primary: #400414;
+  --primary-container: #5C1A28;
+  --accent: #7A2436;
+  --surface: #FFF8EF;
+  --surface-container: #F4EDE1;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: auto; /* Handled smoothly by Lenis */
+  background-color: #F3ECE0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #F3ECE0;
+  color: #1E1B14;
+  font-family: var(--font-sans);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Reusable Liquid Glass System */
+.liquid-glass {
+  background: rgba(255, 248, 239, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(92, 26, 40, 0.12);
+  box-shadow: 0 30px 60px -15px rgba(43, 13, 20, 0.04), 0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+}
+
+.liquid-glass-card {
+  background: rgba(255, 248, 239, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(92, 26, 40, 0.1);
+  box-shadow: 0 15px 35px -10px rgba(43, 13, 20, 0.03), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-glass-card:hover {
+  border-color: rgba(92, 26, 40, 0.25);
+  box-shadow: 0 30px 60px -15px rgba(92, 26, 40, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+}
+
+.liquid-glass-maroon {
+  background: rgba(92, 26, 40, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(92, 26, 40, 0.16);
+  box-shadow: 0 20px 45px -10px rgba(43, 13, 20, 0.06);
+}
+
+.liquid-glass-nav {
+  background: rgba(255, 248, 239, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(92, 26, 40, 0.12);
+  box-shadow: 0 20px 40px -10px rgba(43, 13, 20, 0.06), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+}
+
+.chip-glass {
+  background: rgba(232, 220, 200, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(92, 26, 40, 0.08);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chip-glass:hover {
+  background: rgba(92, 26, 40, 0.08);
+  border-color: rgba(92, 26, 40, 0.25);
+  color: #400414;
+  transform: translateY(-1px);
+}
+
+/* Blueprint / Technical Schematic Grid */
+.blueprint-bg {
+  background-image: 
+    linear-gradient(to right, rgba(92, 26, 40, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(92, 26, 40, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.blueprint-bg-dense {
+  background-image: 
+    linear-gradient(to right, rgba(92, 26, 40, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(92, 26, 40, 0.08) 1px, transparent 1px),
+    linear-gradient(to right, rgba(92, 26, 40, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(92, 26, 40, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+}
+
+/* Timeline line styling */
+.timeline-stem {
+  background: linear-gradient(to bottom, rgba(92, 26, 40, 0.35) 0%, rgba(92, 26, 40, 0.15) 80%, rgba(92, 26, 40, 0) 100%);
+}
+
+/* Custom selection styling */
+::selection {
+  background-color: #5C1A28;
+  color: #FAF6EE;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F3ECE0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D9C1C3;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9D3F50;
 }
