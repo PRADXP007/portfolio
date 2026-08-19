@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ExternalLink, ArrowUpRight, CheckCircle2, Sparkles } from 'lucide-react';
+import { ExternalLink, ArrowUpRight, CheckCircle2, Sparkles, Lightbulb } from 'lucide-react';
 import { GithubIcon } from '@/components/ui/BrandIcons';
 import { Project } from '@/data/portfolioData';
 
@@ -94,7 +94,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             ) : (
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8DCC8]/70 border border-[#5C1A28]/10 text-[11px] font-semibold tracking-wider uppercase text-[#5C1A28]">
                 <Sparkles className="w-3 h-3 text-[#7A2436]" />
-                Software System
+                Software Project
               </span>
             )}
           </div>
@@ -154,7 +154,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
       </motion.div>
 
-      {/* Detail Modal */}
+      {/* Detail Modal with Human Storytelling */}
       {isModalOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1E1B14]/60 backdrop-blur-sm"
@@ -190,10 +190,23 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               {project.description}
             </p>
 
+            {/* Why I Built This */}
+            {project.whyBuilt && (
+              <div className="p-4 rounded-xl bg-[#FAF6EE] border border-[#5C1A28]/15 mb-6">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#5C1A28] mb-1.5">
+                  <Lightbulb className="w-3.5 h-3.5 text-[#7A2436]" />
+                  Why I Built This
+                </div>
+                <p className="text-sm text-[#534344] leading-relaxed italic">
+                  "{project.whyBuilt}"
+                </p>
+              </div>
+            )}
+
             {project.details && project.details.length > 0 && (
               <div className="mb-6">
                 <h4 className="font-sans text-xs font-bold uppercase tracking-wider text-[#400414] mb-3">
-                  Key Engineering Highlights
+                  How It Works & Engineering Details
                 </h4>
                 <ul className="space-y-2.5">
                   {project.details.map((detail, idx) => (
@@ -208,7 +221,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
             <div className="mb-6">
               <h4 className="font-sans text-xs font-bold uppercase tracking-wider text-[#400414] mb-2.5">
-                Technologies & Architecture
+                Tech Stack
               </h4>
               <div className="flex flex-wrap gap-2">
                 {project.techStack.map((tech) => (
@@ -231,7 +244,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#5C1A28]/20 text-[#400414] font-medium text-xs tracking-wider uppercase hover:bg-[#E8DCC8] transition-colors"
                 >
                   <GithubIcon className="w-4 h-4" />
-                  GitHub Repository
+                  View GitHub Repo
                 </a>
               )}
               {project.liveUrl && (
@@ -242,7 +255,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#5C1A28] text-[#FAF6EE] font-medium text-xs tracking-wider uppercase hover:bg-[#400414] transition-colors shadow-sm"
                 >
                   <ExternalLink className="w-4 h-4" />
-                  Live System
+                  Try Live App
                 </a>
               )}
             </div>

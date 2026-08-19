@@ -2,16 +2,17 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FileText, Sparkles, CheckCircle2, ArrowRight, Layers, FileSpreadsheet, Presentation, FileCode } from 'lucide-react';
+import { FileText, Sparkles, CheckCircle2, FileSpreadsheet, Presentation, FileCode, Lightbulb, ExternalLink } from 'lucide-react';
+import { GithubIcon } from '@/components/ui/BrandIcons';
 import GlassPanel from '@/components/ui/GlassPanel';
 import { FLAGSHIP_PROJECT } from '@/data/portfolioData';
 
 export default function CurrentlyBuildingSection() {
   const formats = [
-    { name: 'Word (.docx)', icon: FileText, desc: 'Academic & Executive Reports' },
-    { name: 'PDF (Vector)', icon: FileCode, desc: 'Pixel-Perfect Print Ready' },
-    { name: 'Excel (.xlsx)', icon: FileSpreadsheet, desc: 'Calculated Financial Models' },
-    { name: 'PowerPoint (.pptx)', icon: Presentation, desc: 'Editorial Slide Decks' },
+    { name: 'Word (.docx)', icon: FileText, desc: 'Typeset reports & thesis papers' },
+    { name: 'Vector PDF', icon: FileCode, desc: 'Clean, pixel-perfect documents' },
+    { name: 'Excel (.xlsx)', icon: FileSpreadsheet, desc: 'Auto-calculated tables & charts' },
+    { name: 'PowerPoint (.pptx)', icon: Presentation, desc: 'Structured pitch & project decks' },
   ];
 
   return (
@@ -22,21 +23,21 @@ export default function CurrentlyBuildingSection() {
         <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8DCC8] border border-[#5C1A28]/20">
           <span className="w-2 h-2 rounded-full bg-[#5C1A28] animate-ping" />
           <span className="font-sans text-xs font-bold uppercase tracking-widest text-[#5C1A28]">
-            Active Flagship Project · In Progress
+            What I'm Working On Right Now
           </span>
         </div>
         <div className="h-[1px] flex-grow bg-[#5C1A28]/20" />
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-60px' }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: '-40px' }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
         <GlassPanel
           variant="elevated"
-          className="p-8 sm:p-12 lg:p-16 relative overflow-hidden border-2 border-[#5C1A28]/25 shadow-2xl"
+          className="p-8 sm:p-12 lg:p-16 relative overflow-hidden border-2 border-[#5C1A28]/25 shadow-xl"
         >
           {/* Ambient Lighting Gradient */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-[#5C1A28]/10 via-[#9D3F50]/5 to-transparent pointer-events-none rounded-full blur-3xl" />
@@ -46,7 +47,7 @@ export default function CurrentlyBuildingSection() {
             <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#5C1A28] text-[#FAF6EE] text-[11px] font-mono font-bold uppercase tracking-wider mb-6">
                 <Sparkles className="w-3.5 h-3.5" />
-                Next-Gen Agentic Document Studio
+                Featured Flagship Project
               </div>
 
               <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#400414] leading-[1.1] mb-4">
@@ -57,9 +58,20 @@ export default function CurrentlyBuildingSection() {
                 {FLAGSHIP_PROJECT.tagline}
               </p>
 
-              <p className="text-sm sm:text-base text-[#534344] leading-relaxed mb-8">
+              <p className="text-sm sm:text-base text-[#534344] leading-relaxed mb-6">
                 {FLAGSHIP_PROJECT.description}
               </p>
+
+              {/* Personal Motivation Note */}
+              <div className="p-4 rounded-xl bg-[#FAF6EE] border border-[#5C1A28]/15 mb-8">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#5C1A28] mb-1">
+                  <Lightbulb className="w-3.5 h-3.5 text-[#7A2436]" />
+                  Why I Decided to Build This
+                </div>
+                <p className="text-sm text-[#534344] leading-relaxed italic">
+                  "{FLAGSHIP_PROJECT.whyBuilt}"
+                </p>
+              </div>
 
               {/* Engineering Highlights */}
               <div className="space-y-3 mb-8">
@@ -71,16 +83,28 @@ export default function CurrentlyBuildingSection() {
                 ))}
               </div>
 
-              {/* Tech Stack */}
-              <div className="flex flex-wrap gap-2 pt-4 border-t border-[#5C1A28]/15">
-                {FLAGSHIP_PROJECT.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 rounded-md text-xs font-mono font-semibold text-[#400414] bg-[#FAF6EE] border border-[#5C1A28]/15"
-                  >
-                    {tech}
-                  </span>
-                ))}
+              {/* Tech Stack & GitHub Link */}
+              <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#5C1A28]/15">
+                <div className="flex flex-wrap gap-2">
+                  {FLAGSHIP_PROJECT.techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2.5 py-1 rounded-md text-xs font-mono font-semibold text-[#400414] bg-[#FAF6EE] border border-[#5C1A28]/15"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  href="https://github.com/PRADXP007/Paperrrrrr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#5C1A28] text-[#FAF6EE] text-xs font-bold uppercase tracking-wider hover:bg-[#400414] transition-colors"
+                >
+                  <GithubIcon className="w-4 h-4" />
+                  View Paperrrrrr Repo
+                </a>
               </div>
             </div>
 
@@ -100,7 +124,7 @@ export default function CurrentlyBuildingSection() {
 
                 {/* Formats Grid */}
                 <div className="space-y-3">
-                  {formats.map((fmt, i) => {
+                  {formats.map((fmt) => {
                     const FmtIcon = fmt.icon;
                     return (
                       <div
@@ -128,7 +152,7 @@ export default function CurrentlyBuildingSection() {
 
                 {/* Progress banner */}
                 <div className="mt-6 pt-4 border-t border-[#5C1A28]/15 flex items-center justify-between text-xs text-[#534344]">
-                  <span className="font-mono text-[11px]">Autonomous Web Research Pipeline</span>
+                  <span className="font-mono text-[11px]">Autonomous Research Pipeline</span>
                   <span className="font-mono text-[11px] font-bold text-[#5C1A28]">Active Stage</span>
                 </div>
               </div>

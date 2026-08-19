@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Copy, Check, Send, Download, MapPin, Sparkles } from 'lucide-react';
+import { Mail, Copy, Check, Send, Download, MapPin, Coffee, MessageSquare } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/ui/BrandIcons';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassPanel from '@/components/ui/GlassPanel';
@@ -56,8 +56,8 @@ export default function ContactSection() {
             <p><strong>Anthropic:</strong> AI Fluency for Builders Certification (Aug 2026)</p>
             <p><strong>ITC Infotech:</strong> UI/UX Design Intern (June - July 2025)</p>
             <h2>Featured Projects</h2>
+            <p><strong>Paperrrrrr:</strong> AI-powered document generation platform with live canvas preview.</p>
             <p><strong>CampusLoop:</strong> Monorepo social-commerce platform for college ecosystems.</p>
-            <p><strong>Doubt Loop:</strong> RAG Q&A academic agent with pgvector memory loop.</p>
             <p><strong>Custom FPV Drone:</strong> High-performance carbon fiber racing drone with tuned PID dynamics.</p>
             <p><strong>2x2 Patch Antenna Array:</strong> 2.4 GHz microstrip array simulated in CST Studio with VBA automation.</p>
           </body>
@@ -71,8 +71,8 @@ export default function ContactSection() {
     e.preventDefault();
     if (!formState.email || !formState.message) return;
 
-    const subject = encodeURIComponent(`Portfolio Inquiry from ${formState.name || 'Collaborator'}`);
-    const body = encodeURIComponent(`Hi Pradeep,\n\n${formState.message}\n\nFrom: ${formState.name} (${formState.email})`);
+    const subject = encodeURIComponent(`Hello Pradeep! From ${formState.name || 'a fellow builder'}`);
+    const body = encodeURIComponent(`Hi Pradeep,\n\n${formState.message}\n\nBest,\n${formState.name} (${formState.email})`);
     window.location.href = `mailto:${PERSONAL_INFO.email}?subject=${subject}&body=${body}`;
 
     setSubmitted(true);
@@ -86,32 +86,32 @@ export default function ContactSection() {
   return (
     <section id="contact" className="relative py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto">
       <SectionHeading
-        label="Direct Inquiries & Collaboration"
-        title="Initiate Contact"
-        subtitle="Open to embedded systems engineering, full-stack architectural opportunities, and research collaborations."
+        label="Let's Connect"
+        title="Say Hello or Let's Build Together"
+        subtitle="Always down to chat about hardware builds, web tech, AI agents, or internship opportunities."
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-        {/* Left Column: Direct Contact & Location Info */}
+        {/* Left Column: Direct Contact & Personal Info */}
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
+          initial={{ opacity: 0, x: -24 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-5 flex flex-col gap-6"
         >
           <GlassPanel className="p-8 sm:p-10">
-            <h3 className="font-serif text-3xl text-[#400414] mb-4">
-              Let's Build Something Exceptional
+            <h3 className="font-serif text-3xl text-[#400414] mb-3">
+              I'd love to hear from you!
             </h3>
-            <p className="text-sm text-[#534344] leading-relaxed mb-8">
-              Whether you are looking to collaborate on custom hardware electronics, FPV telemetry systems, high-speed web apps, or AI agent development, reach out directly.
+            <p className="text-sm text-[#534344] leading-relaxed mb-6">
+              Whether you want to collaborate on a hardware prototype, talk about FPV drone tuning, discuss Next.js architecture, or just grab a filter coffee in Bengaluru — my inbox is always open.
             </p>
 
             {/* Email pill with copy button */}
             <div className="p-4 rounded-xl bg-[#FAF6EE] border border-[#5C1A28]/15 mb-6">
               <div className="text-[11px] font-mono uppercase tracking-wider text-[#7A2436] font-semibold mb-1">
-                Direct Email Address
+                Drop me an email directly:
               </div>
               <div className="flex items-center justify-between gap-2">
                 <a
@@ -126,13 +126,13 @@ export default function ContactSection() {
                   aria-label="Copy email"
                 >
                   {copiedEmail ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                  {copiedEmail ? 'Copied' : 'Copy'}
+                  {copiedEmail ? 'Copied!' : 'Copy'}
                 </button>
               </div>
             </div>
 
-            {/* Location & Links */}
-            <div className="space-y-4 mb-8">
+            {/* Location & Social Links */}
+            <div className="space-y-3.5 mb-8">
               <div className="flex items-center gap-3 text-sm text-[#534344]">
                 <MapPin className="w-4 h-4 text-[#5C1A28]" />
                 <span>JP Nagar, Bengaluru, Karnataka, India</span>
@@ -172,31 +172,32 @@ export default function ContactSection() {
           </GlassPanel>
         </motion.div>
 
-        {/* Right Column: Contact Message Form */}
+        {/* Right Column: Friendly Contact Message Form */}
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
+          initial={{ opacity: 0, x: 24 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-7"
         >
           <GlassPanel variant="card" className="p-8 sm:p-12">
-            <h3 className="font-serif text-2xl sm:text-3xl text-[#400414] mb-2">
-              Send a Direct Dispatch
+            <h3 className="font-serif text-2xl sm:text-3xl text-[#400414] mb-2 flex items-center gap-2">
+              <MessageSquare className="w-6 h-6 text-[#5C1A28]" />
+              Send a Quick Note
             </h3>
             <p className="text-xs sm:text-sm text-[#534344] mb-8">
-              Fill out the message below to launch a direct communication thread.
+              Leave your details below and your email client will open with your message ready to send!
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#400414] mb-2">
-                  Your Full Name
+                  What's your name?
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Elena Rostova"
+                  placeholder="e.g. Alex"
                   value={formState.name}
                   onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg bg-[#FAF6EE]/80 border border-[#5C1A28]/15 focus:border-[#5C1A28] focus:ring-1 focus:ring-[#5C1A28] outline-none text-sm text-[#1E1B14] transition-all"
@@ -205,12 +206,12 @@ export default function ContactSection() {
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#400414] mb-2">
-                  Your Email Address
+                  Your email address
                 </label>
                 <input
                   type="email"
                   required
-                  placeholder="elena@company.com"
+                  placeholder="alex@domain.com"
                   value={formState.email}
                   onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg bg-[#FAF6EE]/80 border border-[#5C1A28]/15 focus:border-[#5C1A28] focus:ring-1 focus:ring-[#5C1A28] outline-none text-sm text-[#1E1B14] transition-all"
@@ -219,12 +220,12 @@ export default function ContactSection() {
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#400414] mb-2">
-                  Project or Inquiries Note
+                  What's on your mind?
                 </label>
                 <textarea
                   required
                   rows={4}
-                  placeholder="Tell me about your hardware specs, software architecture requirements, or project scope..."
+                  placeholder="Tell me about your project, team, or just say hello..."
                   value={formState.message}
                   onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg bg-[#FAF6EE]/80 border border-[#5C1A28]/15 focus:border-[#5C1A28] focus:ring-1 focus:ring-[#5C1A28] outline-none text-sm text-[#1E1B14] transition-all resize-none"
@@ -236,12 +237,12 @@ export default function ContactSection() {
                 className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-[#5C1A28] text-[#FAF6EE] font-sans text-xs font-bold tracking-widest uppercase hover:bg-[#400414] transition-all duration-300 shadow-[0_10px_30px_-10px_rgba(92,26,40,0.35)]"
               >
                 <Send className="w-4 h-4" />
-                Dispatch Message
+                Send Message to Pradeep
               </button>
 
               {submitted && (
                 <div className="p-4 rounded-lg bg-[#E8DCC8] border border-[#5C1A28]/20 text-xs text-[#5C1A28] font-medium text-center">
-                  Thank you! Your email client has been opened with your inquiry pre-composed.
+                  ✨ Thank you! Your email client has been opened with your note. Talk soon!
                 </div>
               )}
             </form>

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Briefcase, Award, CheckCircle2, Calendar, ExternalLink } from 'lucide-react';
+import { Briefcase, Award, CheckCircle2, Calendar } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassPanel from '@/components/ui/GlassPanel';
 import { TIMELINE } from '@/data/portfolioData';
@@ -11,9 +11,9 @@ export default function ExperienceSection() {
   return (
     <section id="timeline" className="relative py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto">
       <SectionHeading
-        label="Track Record"
-        title="Experience & Certifications"
-        subtitle="A chronological timeline of industry internships, professional credentials, and production milestones."
+        label="Experience & Learning"
+        title="Where I've Worked & Learned"
+        subtitle="Hands-on design engineering internships and builder credentials."
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
@@ -21,14 +21,14 @@ export default function ExperienceSection() {
         <div className="lg:col-span-4 lg:sticky lg:top-32 self-start">
           <GlassPanel className="p-8 sm:p-10">
             <h3 className="font-serif text-3xl sm:text-4xl text-[#400414] mb-4">
-              Proven Engineering in Enterprise & AI
+              Real-World Craft
             </h3>
             <p className="text-sm sm:text-base text-[#534344] leading-relaxed mb-6">
-              Translating theoretical concepts into production systems—from building enterprise Figma design system components at ITC Infotech to designing deterministic agentic workflows certified by Anthropic.
+              I care deeply about building things that actual people find useful and reliable — whether designing accessible component systems for enterprise teams or learning to tame LLMs for zero-hallucination pipelines.
             </p>
             <div className="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-[#5C1A28]">
               <span className="w-2 h-2 rounded-full bg-[#5C1A28]" />
-              Continuous Growth Mindset
+              Always Learning, Always Refining
             </div>
           </GlassPanel>
         </div>
@@ -45,14 +45,14 @@ export default function ExperienceSection() {
               return (
                 <motion.div
                   key={item.id}
-                  initial={{ opacity: 0, x: 30 }}
+                  initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: '-60px' }}
-                  transition={{ duration: 0.65, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.55, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
                   className="relative group"
                 >
                   {/* Timeline Glass Node Marker */}
-                  <div className="absolute -left-[27px] sm:-left-[39px] top-6 w-8 h-8 rounded-full bg-[#FAF3E7] border-2 border-[#5C1A28] shadow-md flex items-center justify-center group-hover:scale-125 group-hover:bg-[#5C1A28] transition-all duration-300 z-10">
+                  <div className="absolute -left-[27px] sm:-left-[39px] top-6 w-8 h-8 rounded-full bg-[#FAF3E7] border-2 border-[#5C1A28] shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:bg-[#5C1A28] transition-all duration-300 z-10">
                     <div className="w-2.5 h-2.5 rounded-full bg-[#5C1A28] group-hover:bg-[#FAF6EE]" />
                   </div>
 
