@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Cpu, ArrowUpRight, CheckCircle2, ShieldCheck, Activity, Lightbulb } from 'lucide-react';
+import { Cpu, ArrowUpRight, CheckCircle2, ShieldCheck, Activity } from 'lucide-react';
 import { Project } from '@/data/portfolioData';
 
 interface HardwareCardProps {
@@ -169,19 +169,6 @@ export default function HardwareCard({ project, index }: HardwareCardProps) {
             <p className="relative z-10 text-base text-[#534344] leading-relaxed mb-6">
               {project.description}
             </p>
-
-            {/* Why I Built This */}
-            {project.whyBuilt && (
-              <div className="relative z-10 p-4 rounded-xl bg-[#FAF6EE] border border-[#5C1A28]/15 mb-6">
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#5C1A28] mb-1.5">
-                  <Lightbulb className="w-3.5 h-3.5 text-[#7A2436]" />
-                  Why I Built This
-                </div>
-                <p className="text-sm text-[#534344] leading-relaxed italic">
-                  "{project.whyBuilt}"
-                </p>
-              </div>
-            )}
 
             {project.details && project.details.length > 0 && (
               <div className="relative z-10 mb-6">

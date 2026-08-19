@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Cpu, Layers, Sparkles, Palette } from 'lucide-react';
+import { Cpu, Layers, Sparkles, Palette, ShieldCheck } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassPanel from '@/components/ui/GlassPanel';
 import { SKILL_CATEGORIES } from '@/data/portfolioData';
@@ -18,9 +18,9 @@ export default function SkillsSection() {
   return (
     <section id="skills" className="relative py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto">
       <SectionHeading
-        label="My Toolbox"
-        title="What I Work With"
-        subtitle="Tools, languages, and hardware gear I use to bring ideas to life."
+        label="Capabilities & Tooling"
+        title="Technical Arsenal"
+        subtitle="Curated proficiencies spanning low-level circuit dynamics to production cloud systems."
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
@@ -30,10 +30,10 @@ export default function SkillsSection() {
           return (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
             >
               <GlassPanel
                 variant="card"
@@ -50,7 +50,7 @@ export default function SkillsSection() {
                       <h3 className="font-serif text-2xl sm:text-3xl text-[#400414]">
                         {category.title}
                       </h3>
-                      <p className="text-xs font-sans text-[#7A2436] font-semibold tracking-wider mt-0.5">
+                      <p className="text-xs font-sans text-[#7A2436] font-semibold uppercase tracking-wider mt-0.5">
                         {category.subtitle}
                       </p>
                     </div>
