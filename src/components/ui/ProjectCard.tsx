@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ExternalLink, ArrowUpRight, CheckCircle2, Sparkles } from 'lucide-react';
+import { ExternalLink, ArrowUpRight, CheckCircle2, Sparkles, FolderGit2 } from 'lucide-react';
 import { GithubIcon } from '@/components/ui/BrandIcons';
 import { Project } from '@/data/portfolioData';
 
@@ -45,6 +45,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     mouseY.set(0);
   };
 
+  const isFlagship = project.category === 'flagship' || project.id === 'paperrrrrr';
+
   return (
     <>
       <motion.div
@@ -65,12 +67,14 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           rotateX: reducedMotion ? 0 : rotateX,
           rotateY: reducedMotion ? 0 : rotateY,
         }}
-        className="group relative flex flex-col h-full rounded-2xl liquid-glass-card p-6 sm:p-8 cursor-pointer transition-all duration-300"
+        className={`group relative flex flex-col h-full rounded-2xl liquid-glass-card p-6 sm:p-8 cursor-pointer transition-all duration-300 ${
+          isFlagship ? 'border-2 border-[#5C1A28]/30 shadow-lg' : ''
+        }`}
         onClick={() => setIsModalOpen(true)}
       >
         {/* Ambient Warm Glow on Hover */}
         <div
-          className={`absolute inset-0 rounded-2xl bg-gradient-to-br from-[#5C1A28]/5 via-[#FAF6EE]/40 to-transparent pointer-events-none transition-opacity duration-500 ${
+          className={`absolute inset-0 rounded-2xl bg-gradient-to-br from-[#5C1A28]/8 via-[#FAF6EE]/40 to-transparent pointer-events-none transition-opacity duration-500 ${
             isHovered ? 'opacity-100' : 'opacity-0'
           }`}
         />
@@ -78,10 +82,17 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         {/* Card Header & Tag */}
         <div className="relative z-10 flex items-start justify-between gap-4 mb-4">
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8DCC8]/70 border border-[#5C1A28]/10 text-[11px] font-semibold tracking-wider uppercase text-[#5C1A28]">
-              <Sparkles className="w-3 h-3 text-[#7A2436]" />
-              {project.category === 'flagship' ? 'Flagship' : 'Software'}
-            </span>
+            {isFlagship ? (
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#5C1A28] text-[#FAF6EE] text-[11px] font-semibold tracking-wider uppercase shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FAF6EE] animate-ping" />
+                Currently Building · Flagship
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8DCC8]/70 border border-[#5C1A28]/10 text-[11px] font-semibold tracking-wider uppercase text-[#5C1A28]">
+                <Sparkles className="w-3 h-3 text-[#7A2436]" />
+                Software System
+              </span>
+            )}
           </div>
 
           <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
@@ -131,7 +142,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           {project.techStack.map((tech) => (
             <span
               key={tech}
-              className="px-2.5 py-1 rounded-md text-xs font-medium text-[#400414] bg-[#E8DCC8]/50 border border-[#5C1A28]/5 transition-colors"
+              className="chip-glass px-2.5 py-1 rounded-md text-[11px] font-mono font-medium text-[#400414]"
             >
               {tech}
             </span>
@@ -216,7 +227,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#5C1A28]/20 text-[#400414] font-medium text-xs tracking-wider uppercase hover:bg-[#E8DCC8] transition-colors"
                 >
                   <GithubIcon className="w-4 h-4" />
-                  GitHub Code
+                  GitHub Repository
                 </a>
               )}
               {project.liveUrl && (
