@@ -1,5 +1,6 @@
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import ScrollProgressBar from '@/components/ui/ScrollProgressBar';
 import HeroSection from '@/components/sections/HeroSection';
 import AboutSection from '@/components/sections/AboutSection';
 import SkillsSection from '@/components/sections/SkillsSection';
@@ -12,6 +13,9 @@ import ContactSection from '@/components/sections/ContactSection';
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-[#F3ECE0] text-[#1E1B14] overflow-x-hidden selection:bg-[#5C1A28] selection:text-[#FAF6EE]">
+      {/* Scroll Progress Indicator Bar */}
+      <ScrollProgressBar />
+
       {/* Dynamic Sticky Navigation */}
       <Navbar />
 

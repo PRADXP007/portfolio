@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Download, ArrowUpRight } from 'lucide-react';
-import confetti from 'canvas-confetti';
+import { Menu, X } from 'lucide-react';
+import { useSmoothScroll } from '@/components/ui/SmoothScrollProvider';
 
 const NAV_LINKS = [
   { name: 'About', href: '#about' },
@@ -16,43 +16,17 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const { scroll } = useSmoothScroll();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 80) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const handleDownloadResume = () => {
-    confetti({
-      particleCount: 50,
-      spread: 60,
-      origin: { y: 0.15 },
-      colors: ['#5C1A28', '#7A2436', '#FAF6EE', '#E8DCC8'],
-    });
-
-    const link = document.createElement('a');
-    link.href = '#contact';
-    link.click();
-  };
+  // Derive scrolled state directly from Lenis scroll physics
+  const isScrolled = scroll > 60;
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-500 pointer-events-none ${
-          isScrolled ? 'pt-4' : 'pt-6 sm:pt-8'
+          isScrolled ? 'pt-3 sm:pt-4' : 'pt-6 sm:pt-8'
         }`}
       >
         <motion.nav
@@ -61,7 +35,7 @@ export default function Navbar() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className={`pointer-events-auto transition-all duration-500 flex items-center justify-between ${
             isScrolled
-              ? 'w-[92%] sm:w-[88%] max-w-5xl rounded-full px-5 sm:px-8 py-3.5 liquid-glass-nav shadow-[0_20px_45px_-10px_rgba(43,13,20,0.08)]'
+              ? 'w-[92%] sm:w-[88%] max-w-5xl rounded-full px-5 sm:px-8 py-3 liquid-glass-nav shadow-[0_20px_45px_-10px_rgba(43,13,20,0.08)]'
               : 'w-[94%] max-w-7xl px-4 sm:px-8 py-2 bg-transparent'
           }`}
         >
