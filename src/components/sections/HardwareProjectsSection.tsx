@@ -18,10 +18,10 @@ export default function HardwareProjectsSection() {
           <SectionHeading
             label="Hardware"
             title="Hardware Projects"
-            subtitle="FPV flight electronics, 2.4 GHz microstrip antennas, ESP32 IoT builds, and transistor-level IC simulation."
+            subtitle="ESP32-driven FPV drone flight control, companion micro quadcopter testbeds, smart pill monitoring, and automated LPG IoT workflows."
           />
 
-          {/* Sub-grid of 7 hardware projects with GSAP Stacked Card Reveal */}
+          {/* Sub-grid of 4 hardware projects with GSAP Stacked Card Reveal */}
           <StackedCardReveal className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 mt-12">
             {HARDWARE_PROJECTS.map((project, index) => (
               <HardwareCard key={project.id} project={project} index={index} />
