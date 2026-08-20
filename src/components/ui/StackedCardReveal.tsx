@@ -3,7 +3,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useSmoothScroll } from '@/components/ui/SmoothScrollProvider';
 
 interface StackedCardRevealProps {
   children: React.ReactNode;
@@ -15,7 +14,6 @@ export default function StackedCardReveal({
   className = '',
 }: StackedCardRevealProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const { lenis } = useSmoothScroll();
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -54,7 +52,7 @@ export default function StackedCardReveal({
       cardElements.forEach((card, index) => {
         gsap.set(card, {
           opacity: 0,
-          y: 70,
+          y: 60,
           scale: 1,
           transformOrigin: '50% 100%',
           willChange: 'transform, opacity',
@@ -72,7 +70,7 @@ export default function StackedCardReveal({
               opacity: 1,
               y: 0,
               scale: 1,
-              duration: 0.85,
+              duration: 0.7,
               ease: 'power3.out',
               overwrite: 'auto',
             });
@@ -81,13 +79,13 @@ export default function StackedCardReveal({
             for (let prevIdx = 0; prevIdx < index; prevIdx++) {
               const prevCard = cardElements[prevIdx];
               const distance = index - prevIdx;
-              const targetScale = Math.max(0.95, 1 - distance * 0.015);
-              const targetOpacity = Math.max(0.78, 1 - distance * 0.08);
+              const targetScale = Math.max(0.96, 1 - distance * 0.012);
+              const targetOpacity = Math.max(0.82, 1 - distance * 0.06);
 
               gsap.to(prevCard, {
                 scale: targetScale,
                 opacity: targetOpacity,
-                duration: 0.75,
+                duration: 0.6,
                 ease: 'power2.out',
                 overwrite: 'auto',
               });
@@ -97,34 +95,10 @@ export default function StackedCardReveal({
       });
     }, container);
 
-    // Subtle scroll-velocity micro-skew hook for tactile physical feel
-    let skewSetter: ((value: number) => void) | null = null;
-    let removeScrollListener: (() => void) | null = null;
-
-    if (!prefersReducedMotion && container && lenis) {
-      skewSetter = gsap.quickTo(container, 'skewY', {
-        duration: 0.5,
-        ease: 'power3.out',
-      });
-
-      const onScroll = ({ velocity }: { velocity: number }) => {
-        if (!skewSetter) return;
-        // Clamp velocity skew to subtle range (-1.2deg to +1.2deg)
-        const clampedSkew = Math.max(-1.2, Math.min(1.2, velocity * 0.035));
-        skewSetter(clampedSkew);
-      };
-
-      lenis.on('scroll', onScroll);
-      removeScrollListener = () => {
-        lenis.off('scroll', onScroll);
-      };
-    }
-
     return () => {
       ctx.revert();
-      if (removeScrollListener) removeScrollListener();
     };
-  }, [lenis]);
+  }, []);
 
   return (
     <div ref={containerRef} className={`relative ${className}`}>

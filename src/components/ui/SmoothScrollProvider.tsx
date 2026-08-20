@@ -1,22 +1,16 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
+import React, { createContext, useContext, useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 interface SmoothScrollContextType {
-  lenis: Lenis | null;
-  scroll: number;
-  velocity: number;
-  progress: number;
+  getLenis: () => Lenis | null;
 }
 
 const SmoothScrollContext = createContext<SmoothScrollContextType>({
-  lenis: null,
-  scroll: 0,
-  velocity: 0,
-  progress: 0,
+  getLenis: () => null,
 });
 
 export const useSmoothScroll = () => useContext(SmoothScrollContext);
@@ -27,28 +21,22 @@ interface SmoothScrollProviderProps {
 
 export default function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   const lenisRef = useRef<Lenis | null>(null);
-  const [scrollState, setScrollState] = useState({
-    scroll: 0,
-    velocity: 0,
-    progress: 0,
-  });
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
       return;
     }
 
+    // High performance Lenis instance (lerp 0.1 for 60-120fps fluid response)
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.1,
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.95,
+      wheelMultiplier: 1.0,
       touchMultiplier: 1.0,
       infinite: false,
       autoResize: true,
@@ -56,25 +44,24 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
 
     lenisRef.current = lenis;
 
-    // Synchronize Lenis with GSAP ScrollTrigger
-    lenis.on('scroll', (e: { scroll: number; velocity: number; progress: number }) => {
-      ScrollTrigger.update();
-      setScrollState({
-        scroll: e.scroll,
-        velocity: e.velocity,
-        progress: e.progress,
-      });
-    });
-
-    // Drive GSAP ticker off Lenis to ensure single unified RAF loop
+    // Single unified RAF loop via GSAP ticker
     const tickerCallback = (time: number) => {
       lenis.raf(time * 1000);
     };
 
+    lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(tickerCallback);
     gsap.ticker.lagSmoothing(0);
 
-    // Intercept in-page anchor links for smooth Lenis scrolling
+    // Direct DOM progress bar update without React re-renders
+    const progressBar = document.getElementById('scroll-progress-bar');
+    if (progressBar) {
+      lenis.on('scroll', (e: { progress: number }) => {
+        progressBar.style.transform = `scaleX(${e.progress})`;
+      });
+    }
+
+    // Direct anchor link smooth scrolling
     const handleAnchorClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest('a[href^="#"]');
       if (!target) return;
@@ -86,8 +73,7 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
         e.preventDefault();
         lenis.scrollTo(targetEl as HTMLElement, {
           offset: -50,
-          duration: 1.2,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          duration: 1.0,
         });
       }
     };
@@ -103,14 +89,7 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
   }, []);
 
   return (
-    <SmoothScrollContext.Provider
-      value={{
-        lenis: lenisRef.current,
-        scroll: scrollState.scroll,
-        velocity: scrollState.velocity,
-        progress: scrollState.progress,
-      }}
-    >
+    <SmoothScrollContext.Provider value={{ getLenis: () => lenisRef.current }}>
       {children}
     </SmoothScrollContext.Provider>
   );

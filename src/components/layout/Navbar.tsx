@@ -16,11 +16,40 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
-  const { scroll } = useSmoothScroll();
+  const { getLenis } = useSmoothScroll();
+  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Derive scrolled state directly from Lenis scroll physics
-  const isScrolled = scroll > 60;
+  useEffect(() => {
+    let lastState = false;
+
+    const checkScroll = (y: number) => {
+      const scrolled = y > 60;
+      if (scrolled !== lastState) {
+        lastState = scrolled;
+        setIsScrolled(scrolled);
+      }
+    };
+
+    const lenis = getLenis();
+    if (lenis) {
+      const scrollHandler = (e: { scroll: number }) => {
+        checkScroll(e.scroll);
+      };
+      lenis.on('scroll', scrollHandler);
+      return () => {
+        lenis.off('scroll', scrollHandler);
+      };
+    } else {
+      const windowHandler = () => {
+        checkScroll(window.scrollY);
+      };
+      window.addEventListener('scroll', windowHandler, { passive: true });
+      return () => {
+        window.removeEventListener('scroll', windowHandler);
+      };
+    }
+  }, [getLenis]);
 
   return (
     <>
