@@ -4,6 +4,7 @@ import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDown, Download, Mail } from 'lucide-react';
 import WebGLHeroShader from '@/components/ui/WebGLHeroShader';
+import { NeuButton } from '@/components/ui/Neumorphic';
 import confetti from 'canvas-confetti';
 
 export default function HeroSection() {
@@ -39,9 +40,9 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8DCC8]/70 border border-[#5C1A28]/15 mb-8 backdrop-blur-md shadow-sm"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full neu-flat mb-8 backdrop-blur-md shadow-sm"
         >
-          <span className="w-2 h-2 rounded-full bg-[#5C1A28]" />
+          <span className="w-2 h-2 rounded-full bg-[#5C1A28] animate-pulse" />
           <span className="font-sans text-xs font-semibold tracking-widest uppercase text-[#5C1A28]">
             ECE Undergrad · Jain University, Bengaluru
           </span>
@@ -77,29 +78,29 @@ export default function HeroSection() {
           I build physical hardware and full-stack software—from tuned FPV drones and 2.4 GHz patch antennas to Next.js web applications and vector search tools.
         </motion.p>
 
-        {/* CTAs */}
+        {/* Neumorphic CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-16"
         >
-          <a
+          <NeuButton
             href="#contact"
+            variant="maroon"
+            icon={<Download className="w-4 h-4" />}
             onClick={handleDownloadResume}
-            className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-[#5C1A28] text-[#FAF6EE] font-sans text-xs font-bold tracking-widest uppercase hover:bg-[#400414] transition-all duration-300 shadow-[0_15px_35px_-10px_rgba(92,26,40,0.35)] hover:-translate-y-0.5 active:translate-y-0"
           >
-            <Download className="w-4 h-4" />
             Download Resume
-          </a>
+          </NeuButton>
 
-          <a
+          <NeuButton
             href="#contact"
-            className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl border border-[#5C1A28]/25 text-[#400414] font-sans text-xs font-bold tracking-widest uppercase hover:bg-[#E8DCC8]/60 hover:border-[#5C1A28]/40 transition-all duration-300 backdrop-blur-sm hover:-translate-y-0.5 active:translate-y-0"
+            variant="primary"
+            icon={<Mail className="w-4 h-4 text-[#5C1A28]" />}
           >
-            <Mail className="w-4 h-4 text-[#5C1A28]" />
             Get in Touch
-          </a>
+          </NeuButton>
         </motion.div>
       </motion.div>
 

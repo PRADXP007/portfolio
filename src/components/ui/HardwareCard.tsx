@@ -2,8 +2,9 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Cpu, ArrowUpRight, CheckCircle2, ShieldCheck, Activity } from 'lucide-react';
+import { Cpu, ArrowUpRight, CheckCircle2, ShieldCheck, Activity, X } from 'lucide-react';
 import { Project } from '@/data/portfolioData';
+import { NeuChip, NeuButton } from '@/components/ui/Neumorphic';
 
 interface HardwareCardProps {
   project: Project;
@@ -74,14 +75,14 @@ export default function HardwareCard({ project, index }: HardwareCardProps) {
         {/* Card Header & Schematic Tag */}
         <div className="relative z-10 flex items-start justify-between gap-4 mb-4">
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-[#5C1A28]/10 border border-[#5C1A28]/25 text-[11px] font-mono font-semibold tracking-wider text-[#400414]">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg neu-flat text-[11px] font-mono font-semibold tracking-wider text-[#400414]">
               <Cpu className="w-3.5 h-3.5 text-[#5C1A28]" />
               {project.schematicTag || 'HW-SYS-00'}
             </span>
           </div>
 
           {project.metric && (
-            <span className="inline-flex items-center gap-1 text-[11px] font-mono font-medium text-[#5C1A28] px-2.5 py-0.5 rounded bg-[#FAF6EE]/80 border border-[#5C1A28]/15">
+            <span className="inline-flex items-center gap-1 text-[11px] font-mono font-medium text-[#5C1A28] px-2.5 py-0.5 rounded-lg neu-flat">
               <Activity className="w-3 h-3 text-[#7A2436]" />
               {project.metric}
             </span>
@@ -107,12 +108,11 @@ export default function HardwareCard({ project, index }: HardwareCardProps) {
         {/* Tech Stack Chips */}
         <div className="relative z-10 flex flex-wrap gap-2 mt-auto pt-4 border-t border-[#5C1A28]/15">
           {project.techStack.map((tech) => (
-            <span
+            <NeuChip
               key={tech}
-              className="px-2.5 py-1 rounded-md text-xs font-mono font-medium text-[#400414] bg-[#F4EDE1]/80 border border-[#5C1A28]/10"
-            >
-              {tech}
-            </span>
+              label={tech}
+              className="text-[11px] py-1 px-2.5"
+            />
           ))}
         </div>
       </motion.div>
@@ -152,10 +152,10 @@ export default function HardwareCard({ project, index }: HardwareCardProps) {
               </div>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="p-2 rounded-full hover:bg-[#E8DCC8] text-[#534344] transition-colors"
+                className="p-2 rounded-xl neu-raised text-[#534344] hover:text-[#400414] transition-colors"
                 aria-label="Close modal"
               >
-                ✕
+                <X className="w-4 h-4" />
               </button>
             </div>
 
@@ -186,23 +186,21 @@ export default function HardwareCard({ project, index }: HardwareCardProps) {
               </h4>
               <div className="flex flex-wrap gap-2">
                 {project.techStack.map((tech) => (
-                  <span
+                  <NeuChip
                     key={tech}
-                    className="px-3 py-1 rounded text-xs font-mono font-medium text-[#400414] bg-[#E8DCC8] border border-[#5C1A28]/20"
-                  >
-                    {tech}
-                  </span>
+                    label={tech}
+                  />
                 ))}
               </div>
             </div>
 
             <div className="relative z-10 flex justify-end pt-4 border-t border-[#5C1A28]/15">
-              <button
+              <NeuButton
+                variant="maroon"
                 onClick={() => setIsModalOpen(false)}
-                className="px-6 py-2.5 rounded-lg bg-[#5C1A28] text-[#FAF6EE] text-xs font-bold tracking-wider uppercase hover:bg-[#400414] transition-colors shadow-sm"
               >
                 Close Spec Sheet
-              </button>
+              </NeuButton>
             </div>
           </motion.div>
         </div>

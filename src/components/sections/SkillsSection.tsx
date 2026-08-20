@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Cpu, Layers, Sparkles, Palette } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassPanel from '@/components/ui/GlassPanel';
+import { NeuChip } from '@/components/ui/Neumorphic';
 import { SKILL_CATEGORIES } from '@/data/portfolioData';
 
 const ICONS_MAP: Record<string, React.ElementType> = {
@@ -43,7 +44,7 @@ export default function SkillsSection() {
                 <div>
                   {/* Category Header */}
                   <div className="flex items-center gap-4 pb-4 mb-4 border-b border-[#5C1A28]/10">
-                    <div className="p-3 rounded-xl bg-[#5C1A28]/10 text-[#5C1A28]">
+                    <div className="p-3 rounded-xl neu-raised text-[#5C1A28]">
                       <Icon className="w-6 h-6" />
                     </div>
                     <div>
@@ -57,20 +58,14 @@ export default function SkillsSection() {
                   </div>
                 </div>
 
-                {/* Chips Grid */}
+                {/* Neumorphic Soft UI Chips Grid */}
                 <div className="flex flex-wrap gap-2.5 pt-4 mt-auto">
                   {category.skills.map((skill) => (
-                    <span
+                    <NeuChip
                       key={skill.name}
-                      className="chip-glass inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium text-[#400414] hover:text-[#5C1A28] cursor-default"
-                    >
-                      <span>{skill.name}</span>
-                      {skill.tag && (
-                        <span className="text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded bg-[#FAF6EE] text-[#7A2436] border border-[#5C1A28]/10">
-                          {skill.tag}
-                        </span>
-                      )}
-                    </span>
+                      label={skill.name}
+                      tag={skill.tag}
+                    />
                   ))}
                 </div>
               </GlassPanel>

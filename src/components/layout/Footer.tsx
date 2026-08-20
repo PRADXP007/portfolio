@@ -4,6 +4,7 @@ import React from 'react';
 import { Mail, ArrowUp } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/ui/BrandIcons';
 import { PERSONAL_INFO } from '@/data/portfolioData';
+import { NeuIconWell, NeuButton } from '@/components/ui/Neumorphic';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -24,44 +25,35 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Col 2: Social Links */}
-          <div className="md:col-span-4 flex flex-wrap gap-4 md:justify-center">
-            <a
+          {/* Col 2: Social Links with Neumorphic Wells */}
+          <div className="md:col-span-4 flex flex-wrap gap-3 md:justify-center">
+            <NeuIconWell
               href={`mailto:${PERSONAL_INFO.email}`}
-              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#534344] hover:text-[#5C1A28] transition-colors p-2"
-            >
-              <Mail className="w-4 h-4 text-[#5C1A28]" />
-              Email
-            </a>
-            <a
+              label="Email Pradeep"
+              icon={<Mail className="w-4 h-4" />}
+            />
+            <NeuIconWell
               href={PERSONAL_INFO.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#534344] hover:text-[#5C1A28] transition-colors p-2"
-            >
-              <GithubIcon className="w-4 h-4 text-[#5C1A28]" />
-              GitHub
-            </a>
-            <a
+              label="GitHub Profile"
+              icon={<GithubIcon className="w-4 h-4" />}
+            />
+            <NeuIconWell
               href={PERSONAL_INFO.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#534344] hover:text-[#5C1A28] transition-colors p-2"
-            >
-              <LinkedinIcon className="w-4 h-4 text-[#5C1A28]" />
-              LinkedIn
-            </a>
+              label="LinkedIn Profile"
+              icon={<LinkedinIcon className="w-4 h-4" />}
+            />
           </div>
 
-          {/* Col 3: Back to Top */}
+          {/* Col 3: Back to Top with Neumorphic Button */}
           <div className="md:col-span-3 flex md:justify-end">
-            <button
+            <NeuButton
+              variant="secondary"
               onClick={scrollToTop}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#5C1A28]/20 text-[#400414] hover:bg-[#E8DCC8]/60 text-xs font-semibold tracking-wider uppercase transition-all duration-200"
+              icon={<ArrowUp className="w-3.5 h-3.5" />}
+              className="py-2.5 px-5 rounded-full"
             >
               Back to Top
-              <ArrowUp className="w-3.5 h-3.5" />
-            </button>
+            </NeuButton>
           </div>
         </div>
 

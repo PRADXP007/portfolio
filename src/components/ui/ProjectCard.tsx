@@ -2,9 +2,10 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ExternalLink, ArrowUpRight, CheckCircle2, Sparkles } from 'lucide-react';
+import { ExternalLink, ArrowUpRight, CheckCircle2, Sparkles, X } from 'lucide-react';
 import { GithubIcon } from '@/components/ui/BrandIcons';
 import { Project } from '@/data/portfolioData';
+import { NeuChip, NeuIconWell, NeuButton } from '@/components/ui/Neumorphic';
 
 interface ProjectCardProps {
   project: Project;
@@ -81,10 +82,10 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             {isFlagship ? (
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#5C1A28] text-[#FAF6EE] text-[11px] font-semibold tracking-wider uppercase shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#FAF6EE] animate-ping" />
-                Currently Building · Flagship
+                Featured Flagship
               </span>
             ) : (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8DCC8]/70 border border-[#5C1A28]/10 text-[11px] font-semibold tracking-wider uppercase text-[#5C1A28]">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full neu-flat text-[11px] font-semibold tracking-wider uppercase text-[#5C1A28]">
                 <Sparkles className="w-3 h-3 text-[#7A2436]" />
                 Software System
               </span>
@@ -93,26 +94,20 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
           <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
             {project.githubUrl && (
-              <a
+              <NeuIconWell
+                size="sm"
                 href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`GitHub repository for ${project.title}`}
-                className="p-2 rounded-full text-[#534344] hover:text-[#400414] hover:bg-[#E8DCC8]/80 transition-colors"
-              >
-                <GithubIcon className="w-4 h-4" />
-              </a>
+                label={`GitHub repository for ${project.title}`}
+                icon={<GithubIcon className="w-3.5 h-3.5" />}
+              />
             )}
             {project.liveUrl && (
-              <a
+              <NeuIconWell
+                size="sm"
                 href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Live demo for ${project.title}`}
-                className="p-2 rounded-full text-[#534344] hover:text-[#400414] hover:bg-[#E8DCC8]/80 transition-colors"
-              >
-                <ExternalLink className="w-4 h-4" />
-              </a>
+                label={`Live demo for ${project.title}`}
+                icon={<ExternalLink className="w-3.5 h-3.5" />}
+              />
             )}
           </div>
         </div>
@@ -133,15 +128,14 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           {project.description}
         </p>
 
-        {/* Tech Stack Chips */}
+        {/* Neumorphic Tech Stack Chips */}
         <div className="relative z-10 flex flex-wrap gap-2 mt-auto pt-4 border-t border-[#5C1A28]/10">
           {project.techStack.map((tech) => (
-            <span
+            <NeuChip
               key={tech}
-              className="chip-glass px-2.5 py-1 rounded-md text-[11px] font-mono font-medium text-[#400414]"
-            >
-              {tech}
-            </span>
+              label={tech}
+              className="text-[11px] py-1 px-2.5"
+            />
           ))}
         </div>
       </motion.div>
@@ -172,10 +166,10 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               </div>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="p-2 rounded-full hover:bg-[#E8DCC8] text-[#534344] transition-colors"
+                className="p-2 rounded-xl neu-raised text-[#534344] hover:text-[#400414] transition-colors"
                 aria-label="Close modal"
               >
-                ✕
+                <X className="w-4 h-4" />
               </button>
             </div>
 
@@ -205,38 +199,36 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               </h4>
               <div className="flex flex-wrap gap-2">
                 {project.techStack.map((tech) => (
-                  <span
+                  <NeuChip
                     key={tech}
-                    className="px-3 py-1 rounded-full text-xs font-semibold text-[#400414] bg-[#E8DCC8]/80 border border-[#5C1A28]/10"
-                  >
-                    {tech}
-                  </span>
+                    label={tech}
+                  />
                 ))}
               </div>
             </div>
 
             <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-[#5C1A28]/10">
               {project.githubUrl && (
-                <a
+                <NeuButton
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#5C1A28]/20 text-[#400414] font-medium text-xs tracking-wider uppercase hover:bg-[#E8DCC8] transition-colors"
+                  variant="primary"
+                  icon={<GithubIcon className="w-4 h-4" />}
                 >
-                  <GithubIcon className="w-4 h-4" />
                   GitHub Repository
-                </a>
+                </NeuButton>
               )}
               {project.liveUrl && (
-                <a
+                <NeuButton
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#5C1A28] text-[#FAF6EE] font-medium text-xs tracking-wider uppercase hover:bg-[#400414] transition-colors shadow-sm"
+                  variant="maroon"
+                  icon={<ExternalLink className="w-4 h-4" />}
                 >
-                  <ExternalLink className="w-4 h-4" />
                   Live System
-                </a>
+                </NeuButton>
               )}
             </div>
           </motion.div>

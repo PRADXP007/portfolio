@@ -2,11 +2,12 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Copy, Check, Send, Download, MapPin } from 'lucide-react';
+import { Copy, Check, Send, Download, MapPin, Mail } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/ui/BrandIcons';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassPanel from '@/components/ui/GlassPanel';
 import { PERSONAL_INFO } from '@/data/portfolioData';
+import { NeuButton, NeuInput, NeuTextarea, NeuIconWell } from '@/components/ui/Neumorphic';
 import confetti from 'canvas-confetti';
 
 export default function ContactSection() {
@@ -108,10 +109,11 @@ export default function ContactSection() {
               I am open to embedded engineering, firmware, and full-stack developer roles. If you have a project or position that fits my background, my inbox is open.
             </p>
 
-            {/* Email pill with copy button */}
-            <div className="p-4 rounded-xl bg-[#FAF6EE] border border-[#5C1A28]/15 mb-6">
-              <div className="text-[11px] font-mono uppercase tracking-wider text-[#7A2436] font-semibold mb-1">
-                Email
+            {/* Email pill with neumorphic copy button */}
+            <div className="p-4 rounded-2xl neu-flat mb-6">
+              <div className="text-[11px] font-mono uppercase tracking-wider text-[#7A2436] font-semibold mb-1.5 flex items-center gap-1.5">
+                <Mail className="w-3.5 h-3.5 text-[#5C1A28]" />
+                Direct Email
               </div>
               <div className="flex items-center justify-between gap-2">
                 <a
@@ -122,23 +124,29 @@ export default function ContactSection() {
                 </a>
                 <button
                   onClick={handleCopyEmail}
-                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md bg-[#E8DCC8] hover:bg-[#5C1A28] hover:text-[#FAF6EE] text-xs font-semibold text-[#400414] transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg neu-raised hover:text-[#5C1A28] text-xs font-semibold text-[#400414] transition-all cursor-pointer"
                   aria-label="Copy email"
                 >
-                  {copiedEmail ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                  {copiedEmail ? <Check className="w-3.5 h-3.5 text-[#5C1A28]" /> : <Copy className="w-3.5 h-3.5" />}
                   {copiedEmail ? 'Copied' : 'Copy'}
                 </button>
               </div>
             </div>
 
-            {/* Location & Links */}
-            <div className="space-y-4 mb-8">
-              <div className="flex items-center gap-3 text-sm text-[#534344]">
-                <MapPin className="w-4 h-4 text-[#5C1A28]" />
+            {/* Location & Links with Neumorphic Wells */}
+            <div className="space-y-3.5 mb-8">
+              <div className="flex items-center gap-3.5 text-sm text-[#534344]">
+                <NeuIconWell size="sm" icon={<MapPin className="w-4 h-4" />} />
                 <span>JP Nagar, Bengaluru, Karnataka, India</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-[#534344]">
-                <GithubIcon className="w-4 h-4 text-[#5C1A28]" />
+
+              <div className="flex items-center gap-3.5 text-sm text-[#534344]">
+                <NeuIconWell
+                  size="sm"
+                  href={PERSONAL_INFO.github}
+                  label="GitHub"
+                  icon={<GithubIcon className="w-4 h-4" />}
+                />
                 <a
                   href={PERSONAL_INFO.github}
                   target="_blank"
@@ -148,8 +156,14 @@ export default function ContactSection() {
                   github.com/PRADXP007
                 </a>
               </div>
-              <div className="flex items-center gap-3 text-sm text-[#534344]">
-                <LinkedinIcon className="w-4 h-4 text-[#5C1A28]" />
+
+              <div className="flex items-center gap-3.5 text-sm text-[#534344]">
+                <NeuIconWell
+                  size="sm"
+                  href={PERSONAL_INFO.linkedin}
+                  label="LinkedIn"
+                  icon={<LinkedinIcon className="w-4 h-4" />}
+                />
                 <a
                   href={PERSONAL_INFO.linkedin}
                   target="_blank"
@@ -162,17 +176,18 @@ export default function ContactSection() {
             </div>
 
             {/* Resume button */}
-            <button
+            <NeuButton
+              variant="primary"
               onClick={handleDownloadResume}
-              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#FAF6EE] border border-[#5C1A28]/25 text-[#400414] font-sans text-xs font-bold tracking-widest uppercase hover:bg-[#5C1A28] hover:text-[#FAF6EE] transition-all duration-300 shadow-sm"
+              icon={<Download className="w-4 h-4" />}
+              className="w-full"
             >
-              <Download className="w-4 h-4" />
               Download Resume (PDF)
-            </button>
+            </NeuButton>
           </GlassPanel>
         </motion.div>
 
-        {/* Right Column: Contact Message Form */}
+        {/* Right Column: Contact Message Form with Inset Neumorphism */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -189,58 +204,47 @@ export default function ContactSection() {
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[#400414] mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="Your Name"
-                  value={formState.name}
-                  onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg bg-[#FAF6EE]/80 border border-[#5C1A28]/15 focus:border-[#5C1A28] focus:ring-1 focus:ring-[#5C1A28] outline-none text-sm text-[#1E1B14] transition-all"
-                />
-              </div>
+              <NeuInput
+                id="name"
+                label="Name"
+                type="text"
+                required
+                placeholder="Your Name"
+                value={formState.name}
+                onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+              />
 
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[#400414] mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  required
-                  placeholder="your.email@example.com"
-                  value={formState.email}
-                  onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg bg-[#FAF6EE]/80 border border-[#5C1A28]/15 focus:border-[#5C1A28] focus:ring-1 focus:ring-[#5C1A28] outline-none text-sm text-[#1E1B14] transition-all"
-                />
-              </div>
+              <NeuInput
+                id="email"
+                label="Email"
+                type="email"
+                required
+                placeholder="your.email@example.com"
+                value={formState.email}
+                onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+              />
 
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[#400414] mb-2">
-                  Message
-                </label>
-                <textarea
-                  required
-                  rows={4}
-                  placeholder="Write your note here..."
-                  value={formState.message}
-                  onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg bg-[#FAF6EE]/80 border border-[#5C1A28]/15 focus:border-[#5C1A28] focus:ring-1 focus:ring-[#5C1A28] outline-none text-sm text-[#1E1B14] transition-all resize-none"
-                />
-              </div>
+              <NeuTextarea
+                id="message"
+                label="Message"
+                required
+                rows={4}
+                placeholder="Write your note here..."
+                value={formState.message}
+                onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+              />
 
-              <button
+              <NeuButton
                 type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-[#5C1A28] text-[#FAF6EE] font-sans text-xs font-bold tracking-widest uppercase hover:bg-[#400414] transition-all duration-300 shadow-[0_10px_30px_-10px_rgba(92,26,40,0.35)]"
+                variant="maroon"
+                icon={<Send className="w-4 h-4" />}
+                className="w-full"
               >
-                <Send className="w-4 h-4" />
                 Send Message
-              </button>
+              </NeuButton>
 
               {submitted && (
-                <div className="p-4 rounded-lg bg-[#E8DCC8] border border-[#5C1A28]/20 text-xs text-[#5C1A28] font-medium text-center">
+                <div className="p-4 rounded-xl neu-flat text-xs text-[#5C1A28] font-medium text-center">
                   Your email client has been opened with your message pre-filled.
                 </div>
               )}

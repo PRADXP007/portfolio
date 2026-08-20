@@ -108,15 +108,59 @@ body::before {
   transform: translateZ(0);
 }
 
-.chip-glass {
-  background: rgba(232, 220, 200, 0.6);
-  border: 1px solid rgba(92, 26, 40, 0.08);
-  transition: all 0.2s ease;
+/* Neumorphic Soft UI Accent System (Beige × Maroon) */
+.neu-flat {
+  background-color: #F7F1E6;
+  box-shadow: 4px 4px 10px rgba(186, 168, 145, 0.35), -4px -4px 10px rgba(255, 253, 248, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
-.chip-glass:hover {
-  background: rgba(92, 26, 40, 0.08);
-  border-color: rgba(92, 26, 40, 0.25);
+.neu-raised {
+  background-color: #F7F1E6;
+  box-shadow: 5px 5px 12px rgba(186, 168, 145, 0.4), -5px -5px 12px rgba(255, 253, 248, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.neu-raised:hover {
+  box-shadow: 6px 6px 14px rgba(186, 168, 145, 0.45), -6px -6px 14px rgba(255, 253, 248, 1);
+  transform: translateY(-1px);
+}
+
+.neu-pressed,
+.neu-raised:active {
+  background-color: #F2EBE0;
+  box-shadow: inset 3px 3px 6px rgba(186, 168, 145, 0.45), inset -3px -3px 6px rgba(255, 253, 248, 0.9);
+  border: 1px solid rgba(186, 168, 145, 0.25);
+  transform: translateY(0);
+}
+
+.neu-inset {
+  background-color: #F2EBE0;
+  box-shadow: inset 3px 3px 6px rgba(186, 168, 145, 0.4), inset -3px -3px 6px rgba(255, 253, 248, 0.9);
+  border: 1px solid rgba(92, 26, 40, 0.1);
+}
+
+.neu-inset:focus,
+.neu-inset:focus-within {
+  border-color: #5C1A28;
+  box-shadow: inset 3px 3px 6px rgba(186, 168, 145, 0.45), inset -3px -3px 6px rgba(255, 253, 248, 0.9), 0 0 0 1px #5C1A28;
+}
+
+.neu-chip {
+  background-color: #F7F1E6;
+  box-shadow: 3px 3px 7px rgba(186, 168, 145, 0.35), -3px -3px 7px rgba(255, 253, 248, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.neu-chip:hover {
+  box-shadow: 4px 4px 9px rgba(186, 168, 145, 0.45), -4px -4px 9px rgba(255, 253, 248, 1);
+  color: #5C1A28;
+}
+
+.neu-chip-active {
+  background-color: #EFE6D8;
+  box-shadow: inset 2px 2px 5px rgba(186, 168, 145, 0.45), inset -2px -2px 5px rgba(255, 253, 248, 0.9);
+  border: 1.5px solid #5C1A28;
   color: #400414;
 }
 
