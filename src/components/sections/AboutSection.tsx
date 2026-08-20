@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, Cpu, Compass, MapPin, Award } from 'lucide-react';
+import { GraduationCap, Cpu, Compass, MapPin } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassPanel from '@/components/ui/GlassPanel';
 import { PERSONAL_INFO } from '@/data/portfolioData';
@@ -22,34 +22,34 @@ export default function AboutSection() {
     },
     {
       icon: Cpu,
-      tag: 'Core Focus',
-      title: 'Physical & Digital Convergence',
+      tag: 'What I Work On',
+      title: 'Hardware & Web Development',
       content: (
         <>
-          Specializing in the intersection of <span className="font-semibold text-[#400414]">embedded systems, FPV drone engineering, RF antenna design</span>, and modern <span className="font-semibold text-[#400414]">full-stack web architecture</span> (Next.js, React, Node.js).
+          My work is split between hardware benches (<span className="font-semibold text-[#400414]">FPV flight electronics, ESP32 firmware, and CST antenna simulation</span>) and writing code for <span className="font-semibold text-[#400414]">Next.js, TypeScript, and vector search tools</span>.
         </>
       ),
-      meta: 'Hardware Firmware · Web Apps · RAG AI',
+      meta: 'Firmware · Next.js · Vector Retrieval',
     },
     {
       icon: Compass,
-      tag: 'Philosophy',
-      title: 'Precision Craftsmanship',
+      tag: 'How I Build',
+      title: 'Practical Engineering',
       content: (
         <>
-          Driven to build <span className="font-semibold text-[#400414]">deterministic physical hardware</span> and <span className="font-semibold text-[#400414]">delightful software experiences</span> powered by intelligent agentic pipelines and robust systems thinking.
+          I focus on building things that work reliably end-to-end—whether that means calculating microstrip impedances correctly or designing clean database schemas and APIs.
         </>
       ),
-      meta: 'From Circuit Simulation to Cloud Deployment',
+      meta: 'From Circuit Schematics to Production Code',
     },
   ];
 
   return (
     <section id="about" className="relative py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto">
       <SectionHeading
-        label="Background & Identity"
-        title="About the Engineer"
-        subtitle="A synthesis of rigorous electronics fundamentals and modern software craftsmanship."
+        label="About"
+        title="Background & Focus"
+        subtitle="Third-year ECE student at Jain University working across embedded electronics, web development, and applied AI."
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
@@ -68,7 +68,7 @@ export default function AboutSection() {
             </div>
 
             <h3 className="font-serif text-3xl sm:text-4xl text-[#400414] leading-snug mb-6">
-              Engineering solutions across the hardware and software spectrum.
+              Building across physical hardware and software.
             </h3>
 
             <p className="text-sm sm:text-base text-[#534344] leading-relaxed mb-6">

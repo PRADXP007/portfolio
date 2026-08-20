@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowDown, Download, Mail, Sparkles, Terminal } from 'lucide-react';
+import { ArrowDown, Download, Mail } from 'lucide-react';
 import WebGLHeroShader from '@/components/ui/WebGLHeroShader';
 import confetti from 'canvas-confetti';
 
@@ -34,16 +34,16 @@ export default function HeroSection() {
         style={{ y: yParallax, opacity: opacityParallax }}
         className="max-w-5xl mx-auto w-full text-center relative z-10"
       >
-        {/* Subtle Pill Tag */}
+        {/* Subtitle Pill Tag */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8DCC8]/70 border border-[#5C1A28]/15 mb-8 backdrop-blur-md shadow-sm"
         >
-          <span className="w-2 h-2 rounded-full bg-[#5C1A28] animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-[#5C1A28]" />
           <span className="font-sans text-xs font-semibold tracking-widest uppercase text-[#5C1A28]">
-            Jain University · ECE ’27 · Bengaluru
+            ECE Undergrad · Jain University, Bengaluru
           </span>
         </motion.div>
 
@@ -64,17 +64,17 @@ export default function HeroSection() {
           transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="font-serif italic text-xl sm:text-2xl md:text-3xl text-[#7A2436] mb-6 max-w-3xl mx-auto"
         >
-          Embedded Systems & Full-Stack Engineer
+          Embedded Systems & Full-Stack Developer
         </motion.p>
 
-        {/* Value Proposition Pitch */}
+        {/* Concise Human Value Proposition */}
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="font-sans text-base sm:text-lg md:text-xl text-[#534344] max-w-2xl mx-auto leading-relaxed mb-10"
         >
-          Bridging high-performance physical hardware (FPV Drones, ESP32, RF Antenna Design) with intelligent full-stack systems and generative AI architectures.
+          I build physical hardware and full-stack software—from tuned FPV drones and 2.4 GHz patch antennas to Next.js web applications and vector search tools.
         </motion.p>
 
         {/* CTAs */}
@@ -98,7 +98,7 @@ export default function HeroSection() {
             className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl border border-[#5C1A28]/25 text-[#400414] font-sans text-xs font-bold tracking-widest uppercase hover:bg-[#E8DCC8]/60 hover:border-[#5C1A28]/40 transition-all duration-300 backdrop-blur-sm hover:-translate-y-0.5 active:translate-y-0"
           >
             <Mail className="w-4 h-4 text-[#5C1A28]" />
-            Connect / Inquire
+            Get in Touch
           </a>
         </motion.div>
       </motion.div>
@@ -111,7 +111,7 @@ export default function HeroSection() {
         className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
       >
         <span className="font-sans text-[10px] uppercase font-bold tracking-[0.2em] text-[#867274]">
-          Explore Archive
+          Scroll to explore
         </span>
         <motion.div
           animate={{ y: [0, 6, 0] }}

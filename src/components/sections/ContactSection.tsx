@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Copy, Check, Send, Download, MapPin, Sparkles } from 'lucide-react';
+import { Copy, Check, Send, Download, MapPin } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/ui/BrandIcons';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassPanel from '@/components/ui/GlassPanel';
@@ -56,8 +56,8 @@ export default function ContactSection() {
             <p><strong>Anthropic:</strong> AI Fluency for Builders Certification (Aug 2026)</p>
             <p><strong>ITC Infotech:</strong> UI/UX Design Intern (June - July 2025)</p>
             <h2>Featured Projects</h2>
+            <p><strong>Paperrrrrr:</strong> AI document studio with live split-screen multi-format export.</p>
             <p><strong>CampusLoop:</strong> Monorepo social-commerce platform for college ecosystems.</p>
-            <p><strong>Doubt Loop:</strong> RAG Q&A academic agent with pgvector memory loop.</p>
             <p><strong>Custom FPV Drone:</strong> High-performance carbon fiber racing drone with tuned PID dynamics.</p>
             <p><strong>2x2 Patch Antenna Array:</strong> 2.4 GHz microstrip array simulated in CST Studio with VBA automation.</p>
           </body>
@@ -71,7 +71,7 @@ export default function ContactSection() {
     e.preventDefault();
     if (!formState.email || !formState.message) return;
 
-    const subject = encodeURIComponent(`Portfolio Inquiry from ${formState.name || 'Collaborator'}`);
+    const subject = encodeURIComponent(`Portfolio Message from ${formState.name || 'Visitor'}`);
     const body = encodeURIComponent(`Hi Pradeep,\n\n${formState.message}\n\nFrom: ${formState.name} (${formState.email})`);
     window.location.href = `mailto:${PERSONAL_INFO.email}?subject=${subject}&body=${body}`;
 
@@ -86,9 +86,9 @@ export default function ContactSection() {
   return (
     <section id="contact" className="relative py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto">
       <SectionHeading
-        label="Direct Inquiries & Collaboration"
-        title="Initiate Contact"
-        subtitle="Open to embedded systems engineering, full-stack architectural opportunities, and research collaborations."
+        label="Contact"
+        title="Get in Touch"
+        subtitle="Feel free to reach out for engineering roles, project inquiries, or technical discussions."
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
@@ -102,16 +102,16 @@ export default function ContactSection() {
         >
           <GlassPanel className="p-8 sm:p-10">
             <h3 className="font-serif text-3xl text-[#400414] mb-4">
-              Let's Build Something Exceptional
+              Reach Out Directly
             </h3>
             <p className="text-sm text-[#534344] leading-relaxed mb-8">
-              Whether you are looking to collaborate on custom hardware electronics, FPV telemetry systems, high-speed web apps, or AI agent development, reach out directly.
+              I am open to embedded engineering, firmware, and full-stack developer roles. If you have a project or position that fits my background, my inbox is open.
             </p>
 
             {/* Email pill with copy button */}
             <div className="p-4 rounded-xl bg-[#FAF6EE] border border-[#5C1A28]/15 mb-6">
               <div className="text-[11px] font-mono uppercase tracking-wider text-[#7A2436] font-semibold mb-1">
-                Direct Email Address
+                Email
               </div>
               <div className="flex items-center justify-between gap-2">
                 <a
@@ -167,7 +167,7 @@ export default function ContactSection() {
               className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#FAF6EE] border border-[#5C1A28]/25 text-[#400414] font-sans text-xs font-bold tracking-widest uppercase hover:bg-[#5C1A28] hover:text-[#FAF6EE] transition-all duration-300 shadow-sm"
             >
               <Download className="w-4 h-4" />
-              Download Full Curriculum Vitae
+              Download Resume (PDF)
             </button>
           </GlassPanel>
         </motion.div>
@@ -182,21 +182,21 @@ export default function ContactSection() {
         >
           <GlassPanel variant="card" className="p-8 sm:p-12">
             <h3 className="font-serif text-2xl sm:text-3xl text-[#400414] mb-2">
-              Send a Direct Dispatch
+              Send a Message
             </h3>
             <p className="text-xs sm:text-sm text-[#534344] mb-8">
-              Fill out the message below to launch a direct communication thread.
+              Drop a note below and it will open directly in your mail client.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#400414] mb-2">
-                  Your Full Name
+                  Name
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Elena Rostova"
+                  placeholder="Your Name"
                   value={formState.name}
                   onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg bg-[#FAF6EE]/80 border border-[#5C1A28]/15 focus:border-[#5C1A28] focus:ring-1 focus:ring-[#5C1A28] outline-none text-sm text-[#1E1B14] transition-all"
@@ -205,12 +205,12 @@ export default function ContactSection() {
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#400414] mb-2">
-                  Your Email Address
+                  Email
                 </label>
                 <input
                   type="email"
                   required
-                  placeholder="elena@company.com"
+                  placeholder="your.email@example.com"
                   value={formState.email}
                   onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg bg-[#FAF6EE]/80 border border-[#5C1A28]/15 focus:border-[#5C1A28] focus:ring-1 focus:ring-[#5C1A28] outline-none text-sm text-[#1E1B14] transition-all"
@@ -219,12 +219,12 @@ export default function ContactSection() {
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#400414] mb-2">
-                  Project or Inquiries Note
+                  Message
                 </label>
                 <textarea
                   required
                   rows={4}
-                  placeholder="Tell me about your hardware specs, software architecture requirements, or project scope..."
+                  placeholder="Write your note here..."
                   value={formState.message}
                   onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg bg-[#FAF6EE]/80 border border-[#5C1A28]/15 focus:border-[#5C1A28] focus:ring-1 focus:ring-[#5C1A28] outline-none text-sm text-[#1E1B14] transition-all resize-none"
@@ -236,12 +236,12 @@ export default function ContactSection() {
                 className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-[#5C1A28] text-[#FAF6EE] font-sans text-xs font-bold tracking-widest uppercase hover:bg-[#400414] transition-all duration-300 shadow-[0_10px_30px_-10px_rgba(92,26,40,0.35)]"
               >
                 <Send className="w-4 h-4" />
-                Dispatch Message
+                Send Message
               </button>
 
               {submitted && (
                 <div className="p-4 rounded-lg bg-[#E8DCC8] border border-[#5C1A28]/20 text-xs text-[#5C1A28] font-medium text-center">
-                  Thank you! Your email client has been opened with your inquiry pre-composed.
+                  Your email client has been opened with your message pre-filled.
                 </div>
               )}
             </form>

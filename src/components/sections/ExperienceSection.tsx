@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Briefcase, Award, CheckCircle2, Calendar, ExternalLink } from 'lucide-react';
+import { Briefcase, Award, CheckCircle2, Calendar } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassPanel from '@/components/ui/GlassPanel';
 import { TIMELINE } from '@/data/portfolioData';
@@ -11,9 +11,9 @@ export default function ExperienceSection() {
   return (
     <section id="timeline" className="relative py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto">
       <SectionHeading
-        label="Track Record"
-        title="Experience & Certifications"
-        subtitle="A chronological timeline of industry internships, professional credentials, and production milestones."
+        label="Experience"
+        title="Experience & Credentials"
+        subtitle="Internships, certifications, and technical milestones."
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
@@ -21,14 +21,14 @@ export default function ExperienceSection() {
         <div className="lg:col-span-4 lg:sticky lg:top-32 self-start">
           <GlassPanel className="p-8 sm:p-10">
             <h3 className="font-serif text-3xl sm:text-4xl text-[#400414] mb-4">
-              Proven Engineering in Enterprise & AI
+              Work & Training
             </h3>
             <p className="text-sm sm:text-base text-[#534344] leading-relaxed mb-6">
-              Translating theoretical concepts into production systems—from building enterprise Figma design system components at ITC Infotech to designing deterministic agentic workflows certified by Anthropic.
+              Practical experience from building design system components at ITC Infotech to completing Anthropic&apos;s developer certification on Claude and tool use.
             </p>
             <div className="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-[#5C1A28]">
               <span className="w-2 h-2 rounded-full bg-[#5C1A28]" />
-              Continuous Growth Mindset
+              Bengaluru, India
             </div>
           </GlassPanel>
         </div>

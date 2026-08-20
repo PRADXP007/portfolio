@@ -18,14 +18,14 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: 'Pradeep H — ECE Student · Embedded Systems & Full-Stack Engineer',
+  title: 'Pradeep H — Embedded Systems & Full-Stack Developer',
   description:
-    'Engineering portfolio of Pradeep H (B.Tech ECE @ Jain University Bengaluru). Specializing in FPV drone hardware, embedded systems (ESP32/C++), RF simulation, full-stack Next.js web applications, and AI integrations.',
+    'Portfolio of Pradeep H (B.Tech ECE @ Jain University, Bengaluru). Focused on FPV drone electronics, ESP32 firmware, RF antennas, and full-stack Next.js web applications.',
   keywords: [
     'Pradeep H',
-    'Embedded Systems Engineer',
+    'Embedded Systems',
     'Full Stack Developer',
-    'FPV Drone Engineer',
+    'FPV Drone',
     'Jain University',
     'Electronics and Communication',
     'Next.js 16',
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'Pradeep H', url: 'https://github.com/PRADXP007' }],
   creator: 'Pradeep H',
   openGraph: {
-    title: 'Pradeep H — Engineering Portfolio',
+    title: 'Pradeep H — Embedded Systems & Full-Stack Developer',
     description:
-      'Bridging physical hardware engineering with intelligent software architecture and generative AI systems.',
+      'Portfolio of Pradeep H (B.Tech ECE @ Jain University, Bengaluru). Focused on FPV drone electronics, ESP32 firmware, RF antennas, and full-stack Next.js web applications.',
     url: 'https://portfolio-five-umber-61.vercel.app',
     siteName: 'Pradeep H Portfolio',
     locale: 'en_US',
@@ -48,8 +48,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Pradeep H — Engineering Portfolio',
-    description: 'ECE Student · Embedded Systems & Full-Stack Engineer based in Bengaluru.',
+    title: 'Pradeep H — Embedded Systems & Full-Stack Developer',
+    description: 'ECE Student · Embedded Systems & Full-Stack Developer based in Bengaluru.',
     creator: '@pradeeph007',
   },
   robots: {

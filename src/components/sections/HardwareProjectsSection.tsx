@@ -16,9 +16,9 @@ export default function HardwareProjectsSection() {
 
         <div className="relative z-10">
           <SectionHeading
-            label="Physical Systems & Circuit Synthesis"
-            title="Hardware & Embedded Engineering"
-            subtitle="Bridging the digital and physical domains through custom FPV flight electronics, 2.4 GHz RF antenna simulation, ESP32 IoT nodes, and Cadence Virtuoso IC design."
+            label="Hardware"
+            title="Hardware Projects"
+            subtitle="FPV flight electronics, 2.4 GHz microstrip antennas, ESP32 IoT builds, and transistor-level IC simulation."
           />
 
           {/* Sub-grid of 7 hardware projects with GSAP Stacked Card Reveal */}

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Mail, ArrowUp, Download } from 'lucide-react';
+import { Mail, ArrowUp } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/ui/BrandIcons';
 import { PERSONAL_INFO } from '@/data/portfolioData';
 
@@ -20,7 +20,7 @@ export default function Footer() {
               Pradeep H
             </h3>
             <p className="font-sans text-sm text-[#534344] leading-relaxed max-w-sm">
-              ECE Student · Embedded Systems & Full-Stack Engineer at Jain University, Bengaluru.
+              ECE Student · Embedded Systems & Full-Stack Developer at Jain University, Bengaluru.
             </p>
           </div>
 
@@ -67,7 +67,7 @@ export default function Footer() {
 
         {/* Bottom copyright row */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#867274]">
-          <p>© {new Date().getFullYear()} Pradeep H. Crafted for the digital archive & engineering gallery.</p>
+          <p>© {new Date().getFullYear()} Pradeep H. Built with Next.js, TypeScript, and Tailwind CSS.</p>
           <p className="font-mono text-[11px]">Bengaluru, India · 12.9716° N, 77.5946° E</p>
         </div>
       </div>

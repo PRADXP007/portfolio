@@ -10,9 +10,9 @@ export default function SoftwareProjectsSection() {
   return (
     <section id="software" className="relative py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto">
       <SectionHeading
-        label="Software Engineering & AI"
-        title="Digital Systems & Architectures"
-        subtitle="Full-stack web applications, vector-search retrieval agents, interactive 3D experiences, and developer tools."
+        label="Software"
+        title="Software Projects"
+        subtitle="Full-stack web applications, developer tools, and graphics experiments built with TypeScript, Next.js, and Python."
       />
 
       <StackedCardReveal className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

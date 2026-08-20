@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Cpu, Layers, Sparkles, Palette, ShieldCheck } from 'lucide-react';
+import { Cpu, Layers, Sparkles, Palette } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassPanel from '@/components/ui/GlassPanel';
 import { SKILL_CATEGORIES } from '@/data/portfolioData';
@@ -18,9 +18,9 @@ export default function SkillsSection() {
   return (
     <section id="skills" className="relative py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto">
       <SectionHeading
-        label="Capabilities & Tooling"
-        title="Technical Arsenal"
-        subtitle="Curated proficiencies spanning low-level circuit dynamics to production cloud systems."
+        label="Skills"
+        title="Technical Skills"
+        subtitle="Tools, languages, and hardware equipment I use regularly."
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
