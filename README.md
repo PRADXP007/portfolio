@@ -13,7 +13,7 @@
 [![Lenis](https://img.shields.io/badge/Lenis-Smooth_Scroll-5C1A28?style=for-the-badge)](https://github.com/darkroomengineering/lenis)
 [![License: MIT](https://img.shields.io/badge/License-MIT-7A2436?style=for-the-badge)](LICENSE)
 
-[**Explore Live Deployment**](https://portfolio-five-umber-61.vercel.app) · [**Report Issue**](https://github.com/PRADXP007/portfolio/issues) · [**Connect on LinkedIn**](https://linkedin.com/in/pradeeph007)
+[**Explore Live Deployment**](https://pradeeph-portfolio.vercel.app) · [**Report Issue**](https://github.com/PRADXP007/portfolio/issues) · [**Connect on LinkedIn**](https://linkedin.com/in/pradeeph007)
 
 </div>
 

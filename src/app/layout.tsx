@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: 'Pradeep H — Embedded Systems & Full-Stack Developer',
     description:
       'Portfolio of Pradeep H (B.Tech ECE @ Jain University, Bengaluru). Focused on FPV drone electronics, ESP32 firmware, RF antennas, and full-stack Next.js web applications.',
-    url: 'https://portfolio-five-umber-61.vercel.app',
+    url: 'https://pradeeph-portfolio.vercel.app',
     siteName: 'Pradeep H Portfolio',
     locale: 'en_US',
     type: 'website',
