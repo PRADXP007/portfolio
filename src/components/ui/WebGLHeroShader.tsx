@@ -8,7 +8,6 @@ export default function WebGLHeroShader() {
   const [webglSupported, setWebglSupported] = useState(true);
 
   useEffect(() => {
-    // Accessibility check: disable if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
       setWebglSupported(false);
@@ -37,7 +36,6 @@ export default function WebGLHeroShader() {
     let isMounted = true;
     let isVisible = true;
 
-    // Pause rendering when Hero is out of viewport to eliminate scroll lag
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
@@ -88,8 +86,8 @@ export default function WebGLHeroShader() {
         vec2 aspect = vec2(u_resolution.x / u_resolution.y, 1.0);
         vec2 st = uv * aspect;
         
-        float line_width = 0.0035;
-        float grid_size = 0.08;
+        float line_width = 0.0025;
+        float grid_size = 0.07;
         
         vec2 grid = fract(st / grid_size);
         float lines = step(grid.x, line_width) + step(grid.y, line_width);
@@ -99,15 +97,16 @@ export default function WebGLHeroShader() {
         
         vec2 mouse_st = (u_mouse / u_resolution) * aspect;
         float mouse_dist = length(st - mouse_st);
-        float mouse_glow = smoothstep(0.35, 0.0, mouse_dist) * 0.15;
+        float mouse_glow = smoothstep(0.4, 0.0, mouse_dist) * 0.25;
         
-        float node = smoothstep(0.006, 0.002, dist) * (0.4 + 0.6 * sin(u_time * 1.5 + node_pos.x * 12.0 + node_pos.y * 8.0));
+        float node = smoothstep(0.005, 0.001, dist) * (0.3 + 0.7 * sin(u_time * 1.2 + node_pos.x * 10.0 + node_pos.y * 7.0));
         
-        vec3 beige = vec3(0.953, 0.925, 0.878);
-        vec3 maroon = vec3(0.36, 0.102, 0.157);
+        // Pure monochrome light fields on dark background
+        float intensity = lines * 0.06 + node * 0.2 + mouse_glow;
+        vec3 darkCanvas = vec3(0.031, 0.031, 0.039);
+        vec3 lightBloom = vec3(0.85, 0.85, 0.9);
         
-        float intensity = (lines * 0.035 + node * 0.09 + mouse_glow);
-        vec3 color = mix(beige, maroon, clamp(intensity, 0.0, 1.0));
+        vec3 color = mix(darkCanvas, lightBloom, clamp(intensity, 0.0, 1.0));
         
         gl_FragColor = vec4(color, 1.0);
       }
@@ -208,12 +207,12 @@ export default function WebGLHeroShader() {
 
   if (!webglSupported) {
     return (
-      <div className="absolute inset-0 pointer-events-none opacity-30 blueprint-bg -z-10" />
+      <div className="absolute inset-0 pointer-events-none opacity-20 blueprint-bg -z-10" />
     );
   }
 
   return (
-    <div ref={containerRef} className="absolute inset-0 pointer-events-none opacity-40 mix-blend-multiply overflow-hidden -z-10">
+    <div ref={containerRef} className="absolute inset-0 pointer-events-none opacity-60 overflow-hidden -z-10">
       <canvas
         ref={canvasRef}
         className="w-full h-full block"

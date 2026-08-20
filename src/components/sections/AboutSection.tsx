@@ -15,7 +15,7 @@ export default function AboutSection() {
       title: 'Jain University, Bengaluru',
       content: (
         <>
-          B.Tech in <span className="font-semibold text-[#400414]">Electronics & Communication Engineering</span> (Class of 2027, 3rd Year) with a <span className="font-semibold text-[#5C1A28]">7.3 CGPA</span>. Located in JP Nagar, Bengaluru.
+          B.Tech in <span className="font-semibold text-white">Electronics & Communication Engineering</span> (Class of 2027, 3rd Year) with a <span className="font-semibold text-white">7.3 CGPA</span>. Located in JP Nagar, Bengaluru.
         </>
       ),
       meta: 'Class of 2027 · Expected Graduation',
@@ -26,7 +26,7 @@ export default function AboutSection() {
       title: 'Hardware & Web Development',
       content: (
         <>
-          My work is split between hardware benches (<span className="font-semibold text-[#400414]">FPV flight electronics, ESP32 firmware, and CST antenna simulation</span>) and writing code for <span className="font-semibold text-[#400414]">Next.js, TypeScript, and vector search tools</span>.
+          My work is split between hardware benches (<span className="font-semibold text-white">FPV flight electronics, ESP32 firmware, and CST antenna simulation</span>) and writing code for <span className="font-semibold text-white">Next.js, TypeScript, and vector search tools</span>.
         </>
       ),
       meta: 'Firmware · Next.js · Vector Retrieval',
@@ -62,31 +62,31 @@ export default function AboutSection() {
           className="lg:col-span-5 flex flex-col gap-6"
         >
           <GlassPanel className="p-8 sm:p-10">
-            <div className="flex items-center gap-2 mb-4 text-xs font-mono font-semibold uppercase tracking-widest text-[#5C1A28]">
-              <MapPin className="w-4 h-4 text-[#7A2436]" />
+            <div className="flex items-center gap-2 mb-4 text-xs font-mono font-semibold uppercase tracking-widest text-white/70">
+              <MapPin className="w-4 h-4 text-white/80" />
               JP Nagar, Bengaluru, India
             </div>
 
-            <h3 className="font-serif text-3xl sm:text-4xl text-[#400414] leading-snug mb-6">
+            <h3 className="font-serif text-3xl sm:text-4xl text-white leading-snug mb-6">
               Building across physical hardware and software.
             </h3>
 
-            <p className="text-sm sm:text-base text-[#534344] leading-relaxed mb-6">
+            <p className="text-sm sm:text-base text-white/65 leading-relaxed mb-6">
               {PERSONAL_INFO.bioParagraphs[0]}
             </p>
 
-            <p className="text-sm sm:text-base text-[#534344] leading-relaxed mb-8">
+            <p className="text-sm sm:text-base text-white/65 leading-relaxed mb-8">
               {PERSONAL_INFO.bioParagraphs[1]}
             </p>
 
             {/* Quick Metrics Grid */}
-            <div className="grid grid-cols-2 gap-4 pt-6 border-t border-[#5C1A28]/15">
+            <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/10">
               {PERSONAL_INFO.stats.map((stat, i) => (
-                <div key={i} className="p-3.5 rounded-xl bg-[#FAF6EE]/80 border border-[#5C1A28]/10">
-                  <div className="font-serif text-xl sm:text-2xl font-bold text-[#400414]">
+                <div key={i} className="p-3.5 rounded-xl liquid-glass border border-white/10">
+                  <div className="font-serif text-xl sm:text-2xl font-bold text-white">
                     {stat.value}
                   </div>
-                  <div className="text-[11px] font-sans font-semibold uppercase tracking-wider text-[#7A2436] mt-0.5">
+                  <div className="text-[11px] font-sans font-semibold uppercase tracking-wider text-white/50 mt-0.5">
                     {stat.label}
                   </div>
                 </div>
@@ -98,7 +98,7 @@ export default function AboutSection() {
         {/* Right Column: 3 Spatial Glass Panels with Connecting Stem */}
         <div className="lg:col-span-7 relative flex flex-col gap-6">
           {/* Decorative connector line */}
-          <div className="absolute left-6 top-10 bottom-10 w-[1px] bg-gradient-to-b from-[#5C1A28]/30 via-[#5C1A28]/15 to-transparent hidden sm:block" />
+          <div className="absolute left-6 top-10 bottom-10 w-[1px] bg-gradient-to-b from-white/30 via-white/15 to-transparent hidden sm:block" />
 
           {panels.map((panel, idx) => {
             const Icon = panel.icon;
@@ -117,28 +117,28 @@ export default function AboutSection() {
                   className="p-8 sm:p-10 pl-8 sm:pl-16 relative overflow-hidden"
                 >
                   {/* Left node dot */}
-                  <div className="absolute left-4 top-10 w-4 h-4 rounded-full bg-[#E8DCC8] border-2 border-[#5C1A28] hidden sm:flex items-center justify-center -translate-x-1/2 group-hover:scale-125 group-hover:bg-[#5C1A28] transition-all duration-300">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#5C1A28] group-hover:bg-[#FAF6EE]" />
+                  <div className="absolute left-4 top-10 w-4 h-4 rounded-full bg-[#08080A] border-2 border-white/60 hidden sm:flex items-center justify-center -translate-x-1/2 group-hover:scale-125 group-hover:border-white transition-all duration-300 shadow-[0_0_10px_rgba(255,255,255,0.4)]">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white" />
                   </div>
 
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="p-2 rounded-lg bg-[#5C1A28]/10 text-[#5C1A28]">
+                    <div className="p-2 rounded-lg liquid-glass border border-white/15 text-white">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <span className="font-sans text-xs font-bold uppercase tracking-widest text-[#7A2436]">
+                    <span className="font-sans text-xs font-bold uppercase tracking-widest text-white/60">
                       {panel.tag}
                     </span>
                   </div>
 
-                  <h4 className="font-serif text-2xl sm:text-3xl text-[#400414] mb-3">
+                  <h4 className="font-serif text-2xl sm:text-3xl text-white mb-3">
                     {panel.title}
                   </h4>
 
-                  <p className="text-sm sm:text-base text-[#534344] leading-relaxed mb-4">
+                  <p className="text-sm sm:text-base text-white/65 leading-relaxed mb-4">
                     {panel.content}
                   </p>
 
-                  <div className="font-mono text-xs text-[#867274] pt-2 border-t border-[#5C1A28]/10">
+                  <div className="font-mono text-xs text-white/40 pt-2 border-t border-white/10">
                     {panel.meta}
                   </div>
                 </GlassPanel>

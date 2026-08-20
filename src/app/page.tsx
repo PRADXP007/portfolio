@@ -12,7 +12,7 @@ import ContactSection from '@/components/sections/ContactSection';
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-[#F3ECE0] text-[#1E1B14] overflow-x-hidden selection:bg-[#5C1A28] selection:text-[#FAF6EE]">
+    <main className="relative min-h-screen bg-[#08080A] text-white overflow-x-hidden selection:bg-white/25 selection:text-white">
       {/* Scroll Progress Indicator Bar */}
       <ScrollProgressBar />
 
@@ -24,7 +24,7 @@ export default function Home() {
 
       {/* Section Separator Line */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <hr className="border-t border-[#5C1A28]/10" />
+        <hr className="border-t border-white/10" />
       </div>
 
       {/* 2. About Section */}
@@ -32,7 +32,7 @@ export default function Home() {
 
       {/* Section Separator Line */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <hr className="border-t border-[#5C1A28]/10" />
+        <hr className="border-t border-white/10" />
       </div>
 
       {/* 3. Skills Section */}
@@ -40,7 +40,7 @@ export default function Home() {
 
       {/* Section Separator Line */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <hr className="border-t border-[#5C1A28]/10" />
+        <hr className="border-t border-white/10" />
       </div>
 
       {/* 4. Experience & Certifications Timeline */}
@@ -48,7 +48,7 @@ export default function Home() {
 
       {/* Section Separator Line */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <hr className="border-t border-[#5C1A28]/10" />
+        <hr className="border-t border-white/10" />
       </div>
 
       {/* 5. Software Projects Grid */}
@@ -56,7 +56,7 @@ export default function Home() {
 
       {/* Section Separator Line */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <hr className="border-t border-[#5C1A28]/10" />
+        <hr className="border-t border-white/10" />
       </div>
 
       {/* 6. Hardware Projects (Blueprint Schematic Grid) */}
@@ -64,7 +64,7 @@ export default function Home() {
 
       {/* Section Separator Line */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <hr className="border-t border-[#5C1A28]/10" />
+        <hr className="border-t border-white/10" />
       </div>
 
       {/* 7. Currently Building (Flagship In Progress Panel) */}
@@ -72,7 +72,7 @@ export default function Home() {
 
       {/* Section Separator Line */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <hr className="border-t border-[#5C1A28]/10" />
+        <hr className="border-t border-white/10" />
       </div>
 
       {/* 8. Contact & Reachout Section */}

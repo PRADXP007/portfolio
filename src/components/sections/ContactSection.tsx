@@ -26,7 +26,7 @@ export default function ContactSection() {
       particleCount: 100,
       spread: 80,
       origin: { y: 0.7 },
-      colors: ['#5C1A28', '#7A2436', '#FAF6EE', '#E8DCC8'],
+      colors: ['#FFFFFF', '#E0E0E0', '#A0A0A0', '#606060'],
     });
 
     const resumeWindow = window.open('', '_blank');
@@ -37,11 +37,11 @@ export default function ContactSection() {
           <head>
             <title>Pradeep H — Resume</title>
             <style>
-              body { font-family: 'Georgia', serif; padding: 40px; max-width: 800px; margin: 0 auto; color: #1e1b14; background: #faf6ee; line-height: 1.6; }
-              h1 { color: #400414; margin-bottom: 4px; font-size: 28px; }
-              h2 { color: #5c1a28; border-bottom: 1px solid #d9c1c3; padding-bottom: 4px; margin-top: 24px; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; }
-              p, li { font-family: sans-serif; font-size: 14px; color: #333; }
-              .meta { font-family: monospace; font-size: 12px; color: #7a2436; margin-bottom: 20px; }
+              body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; color: #ffffff; background: #08080a; line-height: 1.6; }
+              h1 { color: #ffffff; margin-bottom: 4px; font-size: 28px; }
+              h2 { color: #e0e0e0; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 4px; margin-top: 24px; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
+              p, li { font-size: 14px; color: #b0b0b0; }
+              .meta { font-family: monospace; font-size: 12px; color: #888888; margin-bottom: 20px; }
             </style>
           </head>
           <body>
@@ -102,73 +102,73 @@ export default function ContactSection() {
           className="lg:col-span-5 flex flex-col gap-6"
         >
           <GlassPanel className="p-8 sm:p-10">
-            <h3 className="font-serif text-3xl text-[#400414] mb-4">
+            <h3 className="font-serif text-3xl text-white mb-4">
               Reach Out Directly
             </h3>
-            <p className="text-sm text-[#534344] leading-relaxed mb-8">
+            <p className="text-sm text-white/65 leading-relaxed mb-8">
               I am open to embedded engineering, firmware, and full-stack developer roles. If you have a project or position that fits my background, my inbox is open.
             </p>
 
-            {/* Email pill with neumorphic copy button */}
-            <div className="p-4 rounded-2xl neu-flat mb-6">
-              <div className="text-[11px] font-mono uppercase tracking-wider text-[#7A2436] font-semibold mb-1.5 flex items-center gap-1.5">
-                <Mail className="w-3.5 h-3.5 text-[#5C1A28]" />
+            {/* Email pill with glass copy button */}
+            <div className="p-4 rounded-2xl liquid-glass border border-white/12 mb-6">
+              <div className="text-[11px] font-mono uppercase tracking-wider text-white/50 font-semibold mb-1.5 flex items-center gap-1.5">
+                <Mail className="w-3.5 h-3.5 text-white/80" />
                 Direct Email
               </div>
               <div className="flex items-center justify-between gap-2">
                 <a
                   href={`mailto:${PERSONAL_INFO.email}`}
-                  className="font-mono text-sm sm:text-base font-bold text-[#400414] hover:text-[#5C1A28] transition-colors truncate"
+                  className="font-mono text-sm sm:text-base font-bold text-white hover:text-white/80 transition-colors truncate"
                 >
                   {PERSONAL_INFO.email}
                 </a>
                 <button
                   onClick={handleCopyEmail}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg neu-raised hover:text-[#5C1A28] text-xs font-semibold text-[#400414] transition-all cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass-btn-secondary text-xs font-semibold text-white transition-all cursor-pointer"
                   aria-label="Copy email"
                 >
-                  {copiedEmail ? <Check className="w-3.5 h-3.5 text-[#5C1A28]" /> : <Copy className="w-3.5 h-3.5" />}
+                  {copiedEmail ? <Check className="w-3.5 h-3.5 text-white" /> : <Copy className="w-3.5 h-3.5" />}
                   {copiedEmail ? 'Copied' : 'Copy'}
                 </button>
               </div>
             </div>
 
-            {/* Location & Links with Neumorphic Wells */}
+            {/* Location & Links with Pure Glass Wells */}
             <div className="space-y-3.5 mb-8">
-              <div className="flex items-center gap-3.5 text-sm text-[#534344]">
-                <NeuIconWell size="sm" icon={<MapPin className="w-4 h-4" />} />
+              <div className="flex items-center gap-3.5 text-sm text-white/70">
+                <NeuIconWell size="sm" icon={<MapPin className="w-4 h-4 text-white/80" />} />
                 <span>JP Nagar, Bengaluru, Karnataka, India</span>
               </div>
 
-              <div className="flex items-center gap-3.5 text-sm text-[#534344]">
+              <div className="flex items-center gap-3.5 text-sm text-white/70">
                 <NeuIconWell
                   size="sm"
                   href={PERSONAL_INFO.github}
                   label="GitHub"
-                  icon={<GithubIcon className="w-4 h-4" />}
+                  icon={<GithubIcon className="w-4 h-4 text-white/80" />}
                 />
                 <a
                   href={PERSONAL_INFO.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#5C1A28] transition-colors underline-offset-4 hover:underline"
+                  className="hover:text-white transition-colors underline-offset-4 hover:underline"
                 >
                   github.com/PRADXP007
                 </a>
               </div>
 
-              <div className="flex items-center gap-3.5 text-sm text-[#534344]">
+              <div className="flex items-center gap-3.5 text-sm text-white/70">
                 <NeuIconWell
                   size="sm"
                   href={PERSONAL_INFO.linkedin}
                   label="LinkedIn"
-                  icon={<LinkedinIcon className="w-4 h-4" />}
+                  icon={<LinkedinIcon className="w-4 h-4 text-white/80" />}
                 />
                 <a
                   href={PERSONAL_INFO.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#5C1A28] transition-colors underline-offset-4 hover:underline"
+                  className="hover:text-white transition-colors underline-offset-4 hover:underline"
                 >
                   linkedin.com/in/pradeeph007
                 </a>
@@ -187,7 +187,7 @@ export default function ContactSection() {
           </GlassPanel>
         </motion.div>
 
-        {/* Right Column: Contact Message Form with Inset Neumorphism */}
+        {/* Right Column: Contact Message Form with Inset Glass */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -196,10 +196,10 @@ export default function ContactSection() {
           className="lg:col-span-7"
         >
           <GlassPanel variant="card" className="p-8 sm:p-12">
-            <h3 className="font-serif text-2xl sm:text-3xl text-[#400414] mb-2">
+            <h3 className="font-serif text-2xl sm:text-3xl text-white mb-2">
               Send a Message
             </h3>
-            <p className="text-xs sm:text-sm text-[#534344] mb-8">
+            <p className="text-xs sm:text-sm text-white/60 mb-8">
               Drop a note below and it will open directly in your mail client.
             </p>
 
@@ -244,7 +244,7 @@ export default function ContactSection() {
               </NeuButton>
 
               {submitted && (
-                <div className="p-4 rounded-xl neu-flat text-xs text-[#5C1A28] font-medium text-center">
+                <div className="p-4 rounded-xl liquid-glass border border-white/20 text-xs text-white font-medium text-center">
                   Your email client has been opened with your message pre-filled.
                 </div>
               )}

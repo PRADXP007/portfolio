@@ -60,30 +60,30 @@ export default function HardwareCard({ project, index }: HardwareCardProps) {
           rotateX: isHovered && !reducedMotion ? rotateX : 0,
           rotateY: isHovered && !reducedMotion ? rotateY : 0,
         }}
-        className="group relative flex flex-col h-full rounded-2xl liquid-glass-maroon p-6 sm:p-8 cursor-pointer border border-[#5C1A28]/20 overflow-hidden"
+        className="group relative flex flex-col h-full rounded-2xl liquid-glass-card p-6 sm:p-8 cursor-pointer border border-white/15 overflow-hidden"
         onClick={() => setIsModalOpen(true)}
       >
-        {/* Schematic Grid Background */}
-        <div className="absolute inset-0 blueprint-bg opacity-25 pointer-events-none" />
+        {/* Schematic Grid Background (Monochrome) */}
+        <div className="absolute inset-0 blueprint-bg opacity-30 pointer-events-none" />
 
         {/* Ambient Corner Accent Lines */}
         <div className="absolute top-0 right-0 w-16 h-16 pointer-events-none">
-          <div className="absolute top-3 right-3 w-8 h-[1px] bg-[#5C1A28]/30" />
-          <div className="absolute top-3 right-3 w-[1px] h-8 bg-[#5C1A28]/30" />
+          <div className="absolute top-3 right-3 w-8 h-[1px] bg-white/20" />
+          <div className="absolute top-3 right-3 w-[1px] h-8 bg-white/20" />
         </div>
 
         {/* Card Header & Schematic Tag */}
         <div className="relative z-10 flex items-start justify-between gap-4 mb-4">
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg neu-flat text-[11px] font-mono font-semibold tracking-wider text-[#400414]">
-              <Cpu className="w-3.5 h-3.5 text-[#5C1A28]" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg liquid-glass border border-white/15 text-[11px] font-mono font-semibold tracking-wider text-white">
+              <Cpu className="w-3.5 h-3.5 text-white/80" />
               {project.schematicTag || 'HW-SYS-00'}
             </span>
           </div>
 
           {project.metric && (
-            <span className="inline-flex items-center gap-1 text-[11px] font-mono font-medium text-[#5C1A28] px-2.5 py-0.5 rounded-lg neu-flat">
-              <Activity className="w-3 h-3 text-[#7A2436]" />
+            <span className="inline-flex items-center gap-1 text-[11px] font-mono font-medium text-white/80 px-2.5 py-0.5 rounded-lg liquid-glass border border-white/10">
+              <Activity className="w-3 h-3 text-white/60" />
               {project.metric}
             </span>
           )}
@@ -91,22 +91,22 @@ export default function HardwareCard({ project, index }: HardwareCardProps) {
 
         {/* Title & Tagline */}
         <div className="relative z-10 mb-3">
-          <h3 className="font-serif text-2xl sm:text-3xl text-[#400414] group-hover:text-[#5C1A28] transition-colors flex items-center justify-between">
+          <h3 className="font-serif text-2xl sm:text-3xl text-white group-hover:text-white transition-colors flex items-center justify-between">
             <span>{project.title}</span>
-            <ArrowUpRight className="w-5 h-5 text-[#5C1A28]/40 group-hover:text-[#5C1A28] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+            <ArrowUpRight className="w-5 h-5 text-white/30 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
           </h3>
-          <p className="text-xs font-semibold uppercase tracking-wider text-[#7A2436] mt-1">
+          <p className="text-xs font-semibold uppercase tracking-wider text-white/50 mt-1">
             {project.tagline}
           </p>
         </div>
 
         {/* Description */}
-        <p className="relative z-10 text-sm text-[#534344] leading-relaxed mb-6 flex-grow line-clamp-3">
+        <p className="relative z-10 text-sm text-white/65 leading-relaxed mb-6 flex-grow line-clamp-3">
           {project.description}
         </p>
 
-        {/* Tech Stack Chips */}
-        <div className="relative z-10 flex flex-wrap gap-2 mt-auto pt-4 border-t border-[#5C1A28]/15">
+        {/* Pure Liquid Glass Tech Stack Chips */}
+        <div className="relative z-10 flex flex-wrap gap-2 mt-auto pt-4 border-t border-white/10">
           {project.techStack.map((tech) => (
             <NeuChip
               key={tech}
@@ -120,7 +120,7 @@ export default function HardwareCard({ project, index }: HardwareCardProps) {
       {/* Detail Modal */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1E1B14]/65 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
           onClick={() => setIsModalOpen(false)}
         >
           <motion.div
@@ -129,7 +129,7 @@ export default function HardwareCard({ project, index }: HardwareCardProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 16 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-2xl rounded-2xl bg-[#FAF3E7] border border-[#5C1A28]/30 p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto"
+            className="relative w-full max-w-2xl rounded-2xl bg-[#0E0E12] border border-white/20 p-6 sm:p-8 shadow-[0_30px_90px_rgba(0,0,0,0.8)] max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="absolute inset-0 blueprint-bg opacity-15 pointer-events-none rounded-2xl" />
@@ -137,42 +137,42 @@ export default function HardwareCard({ project, index }: HardwareCardProps) {
             <div className="relative z-10 flex justify-between items-start mb-4">
               <div>
                 <div className="flex items-center gap-2 mb-1.5">
-                  <span className="font-mono text-xs font-bold tracking-widest px-2 py-0.5 bg-[#5C1A28] text-[#FAF6EE] rounded">
+                  <span className="font-mono text-xs font-bold tracking-widest px-2 py-0.5 bg-white/15 text-white border border-white/20 rounded">
                     {project.schematicTag}
                   </span>
                   {project.metric && (
-                    <span className="text-xs font-mono text-[#5C1A28] font-semibold">
+                    <span className="text-xs font-mono text-white/70 font-semibold">
                       · {project.metric}
                     </span>
                   )}
                 </div>
-                <h3 className="font-serif text-3xl sm:text-4xl text-[#400414]">
+                <h3 className="font-serif text-3xl sm:text-4xl text-white">
                   {project.title}
                 </h3>
               </div>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="p-2 rounded-xl neu-raised text-[#534344] hover:text-[#400414] transition-colors"
+                className="p-2 rounded-xl liquid-glass border border-white/15 text-white/70 hover:text-white transition-colors"
                 aria-label="Close modal"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            <p className="relative z-10 text-base text-[#534344] leading-relaxed mb-6">
+            <p className="relative z-10 text-base text-white/70 leading-relaxed mb-6">
               {project.description}
             </p>
 
             {project.details && project.details.length > 0 && (
               <div className="relative z-10 mb-6">
-                <h4 className="font-sans text-xs font-bold uppercase tracking-wider text-[#400414] mb-3 flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-[#5C1A28]" />
+                <h4 className="font-sans text-xs font-bold uppercase tracking-wider text-white mb-3 flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-white/80" />
                   Engineering & Fabrication Specs
                 </h4>
                 <ul className="space-y-2.5">
                   {project.details.map((detail, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-sm text-[#534344]">
-                      <CheckCircle2 className="w-4 h-4 text-[#5C1A28] shrink-0 mt-0.5" />
+                    <li key={idx} className="flex items-start gap-2.5 text-sm text-white/70">
+                      <CheckCircle2 className="w-4 h-4 text-white/80 shrink-0 mt-0.5" />
                       <span>{detail}</span>
                     </li>
                   ))}
@@ -181,7 +181,7 @@ export default function HardwareCard({ project, index }: HardwareCardProps) {
             )}
 
             <div className="relative z-10 mb-6">
-              <h4 className="font-sans text-xs font-bold uppercase tracking-wider text-[#400414] mb-2.5">
+              <h4 className="font-sans text-xs font-bold uppercase tracking-wider text-white mb-2.5">
                 Hardware Toolchain & Protocols
               </h4>
               <div className="flex flex-wrap gap-2">
@@ -194,7 +194,7 @@ export default function HardwareCard({ project, index }: HardwareCardProps) {
               </div>
             </div>
 
-            <div className="relative z-10 flex justify-end pt-4 border-t border-[#5C1A28]/15">
+            <div className="relative z-10 flex justify-end pt-4 border-t border-white/10">
               <NeuButton
                 variant="maroon"
                 onClick={() => setIsModalOpen(false)}

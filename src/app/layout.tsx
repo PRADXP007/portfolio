@@ -64,8 +64,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${ebGaramond.variable} ${manrope.variable}`}>
-      <body className="antialiased min-h-screen bg-[#F3ECE0] text-[#1E1B14] selection:bg-[#5C1A28] selection:text-[#FAF6EE]">
+    <html lang="en" className={`${ebGaramond.variable} ${manrope.variable} dark`}>
+      <body className="antialiased min-h-screen bg-[#08080A] text-white selection:bg-white/25 selection:text-white">
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>

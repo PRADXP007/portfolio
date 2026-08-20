@@ -64,14 +64,14 @@ export default function Navbar() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className={`pointer-events-auto transition-all duration-500 flex items-center justify-between ${
             isScrolled
-              ? 'w-[92%] sm:w-[88%] max-w-5xl rounded-full px-5 sm:px-8 py-3 liquid-glass-nav shadow-[0_20px_45px_-10px_rgba(43,13,20,0.08)]'
+              ? 'w-[92%] sm:w-[88%] max-w-5xl rounded-full px-5 sm:px-8 py-3 liquid-glass-nav shadow-[0_20px_50px_rgba(0,0,0,0.6)]'
               : 'w-[94%] max-w-7xl px-4 sm:px-8 py-2 bg-transparent'
           }`}
         >
           {/* Brand */}
           <a
             href="#"
-            className="font-serif text-2xl sm:text-3xl text-[#400414] font-medium tracking-tight hover:opacity-85 transition-opacity"
+            className="font-serif text-2xl sm:text-3xl text-white font-medium tracking-tight hover:opacity-80 transition-opacity"
           >
             Pradeep H
           </a>
@@ -82,10 +82,10 @@ export default function Navbar() {
               <li key={link.name}>
                 <a
                   href={link.href}
-                  className="font-sans text-xs font-semibold tracking-wider uppercase text-[#534344] hover:text-[#400414] transition-colors py-1 relative group"
+                  className="font-sans text-xs font-semibold tracking-wider uppercase text-white/70 hover:text-white transition-colors py-1 relative group"
                 >
                   {link.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#5C1A28] group-hover:w-full transition-all duration-300" />
+                  <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-white group-hover:w-full transition-all duration-300 shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
                 </a>
               </li>
             ))}
@@ -95,7 +95,7 @@ export default function Navbar() {
           <div className="hidden sm:flex items-center gap-3">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#5C1A28] text-[#FAF6EE] font-sans text-xs font-bold tracking-wider uppercase hover:bg-[#400414] transition-all duration-300 shadow-[0_4px_16px_rgba(92,26,40,0.2)] hover:scale-105 active:scale-95"
+              className="inline-flex items-center justify-center px-5 py-2.5 rounded-full glass-btn-primary font-sans text-xs font-bold tracking-wider uppercase text-white hover:scale-105 active:scale-95 transition-all duration-200"
             >
               Connect
             </a>
@@ -104,7 +104,7 @@ export default function Navbar() {
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-full text-[#400414] hover:bg-[#E8DCC8]/60 transition-colors"
+            className="md:hidden p-2 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-colors"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -120,7 +120,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-x-4 top-20 z-40 md:hidden rounded-2xl liquid-glass-nav p-6 shadow-2xl border border-[#5C1A28]/20"
+            className="fixed inset-x-4 top-20 z-40 md:hidden rounded-2xl liquid-glass-nav p-6 shadow-2xl border border-white/20"
           >
             <div className="flex flex-col gap-4">
               {NAV_LINKS.map((link) => (
@@ -128,7 +128,7 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="font-sans text-sm font-semibold tracking-wider uppercase text-[#400414] py-2 border-b border-[#5C1A28]/10 hover:text-[#7A2436] transition-colors"
+                  className="font-sans text-sm font-semibold tracking-wider uppercase text-white/85 py-2 border-b border-white/10 hover:text-white transition-colors"
                 >
                   {link.name}
                 </a>
@@ -137,7 +137,7 @@ export default function Navbar() {
                 <a
                   href="#contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="inline-flex items-center justify-center px-5 py-3 rounded-full bg-[#5C1A28] text-[#FAF6EE] font-sans text-xs font-bold tracking-wider uppercase text-center shadow-md"
+                  className="inline-flex items-center justify-center px-5 py-3 rounded-full glass-btn-primary font-sans text-xs font-bold tracking-wider uppercase text-center shadow-md text-white"
                 >
                   Connect with Pradeep
                 </a>

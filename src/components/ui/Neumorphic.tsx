@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-// 1. Neumorphic Button
+// 1. Pure Liquid Glass Button
 interface NeuButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string;
   variant?: 'primary' | 'secondary' | 'maroon';
@@ -24,15 +24,12 @@ export function NeuButton({
   ...props
 }: NeuButtonProps) {
   const baseStyles =
-    'group relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl font-sans text-xs font-bold tracking-widest uppercase transition-all duration-150 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C1A28] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F3ECE0]';
+    'group relative inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-sans text-xs font-bold tracking-widest uppercase transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08080A]';
 
   const variantStyles = {
-    primary:
-      'neu-raised text-[#5C1A28] hover:text-[#400414] active:neu-pressed active:text-[#400414]',
-    secondary:
-      'neu-flat text-[#534344] hover:text-[#400414] hover:border-[#5C1A28]/25 active:neu-pressed',
-    maroon:
-      'bg-[#5C1A28] text-[#FAF6EE] shadow-[4px_4px_12px_rgba(92,26,40,0.35),-4px_-4px_10px_rgba(255,253,248,0.8)] border border-[#7A2436]/40 hover:bg-[#400414] active:shadow-[inset_3px_3px_6px_rgba(43,13,20,0.6)] active:translate-y-0',
+    primary: 'glass-btn-primary',
+    secondary: 'glass-btn-secondary',
+    maroon: 'glass-btn-primary shadow-[0_0_20px_rgba(255,255,255,0.15)]',
   };
 
   const combinedClasses = `${baseStyles} ${variantStyles[variant]} ${className}`;
@@ -54,7 +51,7 @@ export function NeuButton({
   );
 }
 
-// 2. Neumorphic Chip / Skill Pill
+// 2. Pure Liquid Glass Chip / Pill
 interface NeuChipProps {
   label: string;
   tag?: string;
@@ -77,15 +74,17 @@ export function NeuChip({
       onClick={onClick}
       role={isClickable ? 'button' : undefined}
       tabIndex={isClickable ? 0 : undefined}
-      className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-150 select-none ${
-        active ? 'neu-chip-active font-semibold' : 'neu-chip text-[#400414]'
-      } ${isClickable ? 'cursor-pointer hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#5C1A28]' : 'cursor-default'} ${className}`}
+      className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150 select-none ${
+        active
+          ? 'bg-white/20 border border-white/40 text-white font-semibold shadow-[0_0_15px_rgba(255,255,255,0.15)]'
+          : 'glass-chip'
+      } ${isClickable ? 'cursor-pointer hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-white' : 'cursor-default'} ${className}`}
     >
       <span>{label}</span>
       {tag && (
         <span
           className={`text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded ${
-            active ? 'bg-[#5C1A28] text-[#FAF6EE]' : 'bg-[#FAF6EE] text-[#7A2436] border border-[#5C1A28]/10'
+            active ? 'bg-white text-black' : 'bg-white/10 text-white/70 border border-white/10'
           }`}
         >
           {tag}
@@ -95,7 +94,7 @@ export function NeuChip({
   );
 }
 
-// 3. Neumorphic Icon Container Well
+// 3. Pure Liquid Glass Icon Well
 interface NeuIconWellProps {
   icon: React.ReactNode;
   href?: string;
@@ -119,8 +118,8 @@ export function NeuIconWell({
     lg: 'w-12 h-12 p-3 text-base',
   };
 
-  const baseStyles = `inline-flex items-center justify-center rounded-xl transition-all duration-150 ${
-    active ? 'neu-pressed text-[#5C1A28]' : 'neu-raised text-[#5C1A28] hover:text-[#400414]'
+  const baseStyles = `inline-flex items-center justify-center rounded-xl liquid-glass transition-all duration-200 text-white/80 hover:text-white hover:border-white/35 hover:bg-white/10 ${
+    active ? 'bg-white/20 border-white/40 text-white' : ''
   } ${sizeMap[size]} ${className}`;
 
   if (href) {
@@ -130,7 +129,7 @@ export function NeuIconWell({
         target="_blank"
         rel="noopener noreferrer"
         aria-label={label}
-        className={`${baseStyles} hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#5C1A28]`}
+        className={`${baseStyles} hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-white/80`}
       >
         {icon}
       </a>
@@ -144,7 +143,7 @@ export function NeuIconWell({
   );
 }
 
-// 4. Inset Neumorphic Form Input
+// 4. Pure Inset Glass Form Input
 interface NeuInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
 }
@@ -152,19 +151,19 @@ interface NeuInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export function NeuInput({ label, id, className = '', ...props }: NeuInputProps) {
   return (
     <div>
-      <label htmlFor={id} className="block text-xs font-bold uppercase tracking-wider text-[#400414] mb-2">
+      <label htmlFor={id} className="block text-xs font-bold uppercase tracking-wider text-white/90 mb-2">
         {label}
       </label>
       <input
         id={id}
-        className={`w-full px-4 py-3 rounded-xl neu-inset text-sm text-[#1E1B14] placeholder-[#867274]/70 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C1A28] ${className}`}
+        className={`w-full px-4 py-3 rounded-xl glass-input text-sm text-white placeholder-white/30 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 ${className}`}
         {...props}
       />
     </div>
   );
 }
 
-// 5. Inset Neumorphic Form Textarea
+// 5. Pure Inset Glass Form Textarea
 interface NeuTextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
 }
@@ -172,12 +171,12 @@ interface NeuTextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElem
 export function NeuTextarea({ label, id, className = '', ...props }: NeuTextareaProps) {
   return (
     <div>
-      <label htmlFor={id} className="block text-xs font-bold uppercase tracking-wider text-[#400414] mb-2">
+      <label htmlFor={id} className="block text-xs font-bold uppercase tracking-wider text-white/90 mb-2">
         {label}
       </label>
       <textarea
         id={id}
-        className={`w-full px-4 py-3 rounded-xl neu-inset text-sm text-[#1E1B14] placeholder-[#867274]/70 transition-all duration-150 resize-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C1A28] ${className}`}
+        className={`w-full px-4 py-3 rounded-xl glass-input text-sm text-white placeholder-white/30 transition-all duration-150 resize-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 ${className}`}
         {...props}
       />
     </div>
