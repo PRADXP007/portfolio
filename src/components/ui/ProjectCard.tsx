@@ -22,7 +22,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     setReducedMotion(mediaQuery.matches);
   }, []);
 
-  // 3D Tilt calculation (only active when hovered to keep scrolling 60fps)
+  // 3D Tilt calculation (only active when hovered)
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -55,14 +55,6 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     <>
       <motion.div
         ref={cardRef}
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-40px' }}
-        transition={{
-          duration: 0.5,
-          delay: (index % 3) * 0.08,
-          ease: [0.16, 1, 0.3, 1],
-        }}
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

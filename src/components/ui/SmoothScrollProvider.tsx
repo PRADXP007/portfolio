@@ -2,6 +2,8 @@
 
 import React, { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 interface SmoothScrollProviderProps {
   children: React.ReactNode;
@@ -11,6 +13,8 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
     // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
@@ -30,16 +34,18 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
 
     lenisRef.current = lenis;
 
-    let rafId: number;
-    function raf(time: number) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
+    // Sync Lenis scroll updates with GSAP ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
 
-    rafId = requestAnimationFrame(raf);
+    const tickerCallback = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+
+    gsap.ticker.add(tickerCallback);
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
-      cancelAnimationFrame(rafId);
+      gsap.ticker.remove(tickerCallback);
       lenis.destroy();
       lenisRef.current = null;
     };

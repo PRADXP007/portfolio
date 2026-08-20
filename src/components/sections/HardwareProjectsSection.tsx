@@ -3,6 +3,7 @@
 import React from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import HardwareCard from '@/components/ui/HardwareCard';
+import StackedCardReveal from '@/components/ui/StackedCardReveal';
 import { HARDWARE_PROJECTS } from '@/data/portfolioData';
 
 export default function HardwareProjectsSection() {
@@ -20,12 +21,12 @@ export default function HardwareProjectsSection() {
             subtitle="Bridging the digital and physical domains through custom FPV flight electronics, 2.4 GHz RF antenna simulation, ESP32 IoT nodes, and Cadence Virtuoso IC design."
           />
 
-          {/* Sub-grid of 7 hardware projects */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 mt-12">
+          {/* Sub-grid of 7 hardware projects with GSAP Stacked Card Reveal */}
+          <StackedCardReveal className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 mt-12">
             {HARDWARE_PROJECTS.map((project, index) => (
               <HardwareCard key={project.id} project={project} index={index} />
             ))}
-          </div>
+          </StackedCardReveal>
         </div>
       </div>
     </section>

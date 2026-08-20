@@ -3,6 +3,7 @@
 import React from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import ProjectCard from '@/components/ui/ProjectCard';
+import StackedCardReveal from '@/components/ui/StackedCardReveal';
 import { SOFTWARE_PROJECTS } from '@/data/portfolioData';
 
 export default function SoftwareProjectsSection() {
@@ -14,11 +15,11 @@ export default function SoftwareProjectsSection() {
         subtitle="Full-stack web applications, vector-search retrieval agents, interactive 3D experiences, and developer tools."
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <StackedCardReveal className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {SOFTWARE_PROJECTS.map((project, index) => (
           <ProjectCard key={project.id} project={project} index={index} />
         ))}
-      </div>
+      </StackedCardReveal>
     </section>
   );
 }
