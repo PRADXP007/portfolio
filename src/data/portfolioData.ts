@@ -47,7 +47,7 @@ export const PERSONAL_INFO = {
   email: 'pradee5606@gmail.com',
   github: 'https://github.com/PRADXP007',
   linkedin: 'https://linkedin.com/in/pradeeph007',
-  portfolioUrl: 'https://pradeeph.vercel.app',
+  portfolioUrl: 'https://portfolio-five-umber-61.vercel.app',
   bioHeadline: 'Bridging physical hardware engineering with intelligent software architecture and generative systems.',
   bioParagraphs: [
     'I am a third-year Electronics & Communication Engineering undergraduate at Jain University, Bengaluru with a focus that bridges low-level hardware design, RF simulation, and full-stack software engineering.',

@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: 'Pradeep H — Engineering Portfolio',
     description:
       'Bridging physical hardware engineering with intelligent software architecture and generative AI systems.',
-    url: 'https://pradeeph.vercel.app',
+    url: 'https://portfolio-five-umber-61.vercel.app',
     siteName: 'Pradeep H Portfolio',
     locale: 'en_US',
     type: 'website',
