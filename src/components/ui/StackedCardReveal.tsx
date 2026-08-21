@@ -102,11 +102,23 @@ export default function StackedCardReveal({
 
   return (
     <div ref={containerRef} className={`relative ${className}`}>
-      {React.Children.map(children, (child, idx) => (
-        <div key={idx} className="stacked-card-item h-full transition-shadow duration-300">
-          {child}
-        </div>
-      ))}
+      {React.Children.map(children, (child, idx) => {
+        const isFlagship =
+          React.isValidElement(child) &&
+          ((child.props as any)?.project?.isFlagship ||
+            (child.props as any)?.project?.id === 'fpv-drone');
+
+        return (
+          <div
+            key={idx}
+            className={`stacked-card-item h-full transition-shadow duration-300 ${
+              isFlagship ? 'md:col-span-2' : ''
+            }`}
+          >
+            {child}
+          </div>
+        );
+      })}
     </div>
   );
 }

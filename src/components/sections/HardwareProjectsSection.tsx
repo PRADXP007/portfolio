@@ -9,10 +9,10 @@ import { HARDWARE_PROJECTS } from '@/data/portfolioData';
 export default function HardwareProjectsSection() {
   return (
     <section id="hardware" className="relative py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto">
-      {/* Blueprint Schematic Glass Header & Container */}
-      <div className="relative rounded-3xl p-6 sm:p-10 lg:p-12 border border-white/15 liquid-glass blueprint-bg-dense overflow-hidden shadow-[0_30px_70px_rgba(0,0,0,0.6)]">
-        {/* Subtle Ambient Background Wash */}
-        <div className="absolute inset-0 bg-[#08080A]/80 backdrop-blur-md pointer-events-none" />
+      {/* Blueprint Schematic Light Glass Header & Container */}
+      <div className="relative rounded-3xl p-6 sm:p-10 lg:p-12 border border-black/10 liquid-glass blueprint-bg-dense overflow-hidden shadow-[0_20px_50px_-10px_rgba(0,0,0,0.05)]">
+        {/* Clean Light Ambient Wash */}
+        <div className="absolute inset-0 bg-white/50 backdrop-blur-md pointer-events-none" />
 
         <div className="relative z-10">
           <SectionHeading
