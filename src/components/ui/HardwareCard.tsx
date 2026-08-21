@@ -62,15 +62,15 @@ export default function HardwareCard({ project, index }: HardwareCardProps) {
           rotateX: isHovered && !reducedMotion ? rotateX : 0,
           rotateY: isHovered && !reducedMotion ? rotateY : 0,
         }}
-        className={`group relative flex flex-col h-full rounded-2xl liquid-glass-card p-6 sm:p-8 cursor-pointer border overflow-hidden ${
+        className={`group relative flex flex-col justify-between h-full rounded-2xl liquid-glass-card p-6 sm:p-8 cursor-pointer border overflow-hidden transition-all duration-300 ${
           isFlagship
-            ? 'border-black/20 shadow-md md:col-span-2'
-            : 'border-black/10'
+            ? 'border-black/25 shadow-md ring-1 ring-black/5'
+            : 'border-black/10 shadow-sm'
         }`}
         onClick={() => setIsModalOpen(true)}
       >
         {/* Schematic Grid Background (Light Monochrome) */}
-        <div className="absolute inset-0 blueprint-bg opacity-40 pointer-events-none" />
+        <div className="absolute inset-0 blueprint-bg opacity-30 pointer-events-none" />
 
         {/* Ambient Corner Accent Lines */}
         <div className="absolute top-0 right-0 w-16 h-16 pointer-events-none">
@@ -78,71 +78,74 @@ export default function HardwareCard({ project, index }: HardwareCardProps) {
           <div className="absolute top-3 right-3 w-[1px] h-8 bg-black/15" />
         </div>
 
-        {/* Card Header & Status Badge */}
-        <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 mb-4">
-          <div className="flex flex-wrap items-center gap-2">
-            {/* Status Badge */}
-            {isFlagship ? (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black text-white text-[11px] font-semibold tracking-wider uppercase shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                {project.status || 'Active — Final Year Project'}
+        {/* Top Content Block */}
+        <div className="relative z-10 flex flex-col">
+          {/* Card Header & Status Badge */}
+          <div className="flex flex-wrap items-center justify-between gap-2.5 mb-4">
+            <div className="flex flex-wrap items-center gap-2">
+              {/* Status Badge */}
+              {isFlagship ? (
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black text-white text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                  {project.status || 'Active — Final Year Project'}
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full liquid-glass border border-black/10 text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase text-neutral-800">
+                  <span className={`w-1.5 h-1.5 rounded-full ${project.status?.includes('Active') ? 'bg-black animate-pulse' : 'bg-neutral-400'}`} />
+                  {project.status || 'In Development'}
+                </span>
+              )}
+
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md liquid-glass border border-black/5 text-[10px] font-mono text-neutral-600">
+                <Cpu className="w-3 h-3 text-neutral-600" />
+                {project.schematicTag}
               </span>
-            ) : (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full liquid-glass border border-black/10 text-[11px] font-semibold tracking-wider uppercase text-neutral-800">
-                <span className={`w-1.5 h-1.5 rounded-full ${project.status?.includes('Active') ? 'bg-black animate-pulse' : 'bg-neutral-400'}`} />
-                {project.status || 'In Development'}
+            </div>
+
+            {project.metric && (
+              <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-mono font-medium text-neutral-700 px-2.5 py-0.5 rounded-lg liquid-glass border border-black/5">
+                <Activity className="w-3 h-3 text-neutral-500" />
+                {project.metric}
               </span>
             )}
-
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md liquid-glass border border-black/5 text-[10px] font-mono text-neutral-600">
-              <Cpu className="w-3 h-3 text-neutral-600" />
-              {project.schematicTag}
-            </span>
           </div>
 
-          {project.metric && (
-            <span className="inline-flex items-center gap-1 text-[11px] font-mono font-medium text-neutral-700 px-2.5 py-0.5 rounded-lg liquid-glass border border-black/5">
-              <Activity className="w-3 h-3 text-neutral-500" />
-              {project.metric}
-            </span>
+          {/* Title & Tagline */}
+          <div className="mb-3">
+            <h3 className="font-serif text-2xl sm:text-3xl text-neutral-900 group-hover:text-black transition-colors flex items-center justify-between">
+              <span>{project.title}</span>
+              <ArrowUpRight className="w-5 h-5 text-neutral-400 group-hover:text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 ml-2" />
+            </h3>
+            <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mt-1">
+              {project.tagline}
+            </p>
+          </div>
+
+          {/* Description */}
+          <p className="text-sm text-neutral-600 leading-relaxed mb-6">
+            {project.description}
+          </p>
+
+          {/* If Flagship: Explicit Key Feature Spec Bullets on Card */}
+          {isFlagship && project.details && (
+            <div className="mb-6 p-4 rounded-xl liquid-glass border border-black/10 space-y-2">
+              <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-neutral-800 mb-2">
+                Key Engineering Features
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {project.details.map((spec, sIdx) => (
+                  <div key={sIdx} className="flex items-center gap-2 text-xs text-neutral-700">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-neutral-900 shrink-0" />
+                    <span>{spec}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
         </div>
 
-        {/* Title & Tagline */}
-        <div className="relative z-10 mb-3">
-          <h3 className="font-serif text-2xl sm:text-3xl text-neutral-900 group-hover:text-black transition-colors flex items-center justify-between">
-            <span>{project.title}</span>
-            <ArrowUpRight className="w-5 h-5 text-neutral-400 group-hover:text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-          </h3>
-          <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mt-1">
-            {project.tagline}
-          </p>
-        </div>
-
-        {/* Description */}
-        <p className="relative z-10 text-sm text-neutral-600 leading-relaxed mb-6">
-          {project.description}
-        </p>
-
-        {/* If Flagship: Explicit Key Feature Spec Bullets on Card */}
-        {isFlagship && project.details && (
-          <div className="relative z-10 mb-6 p-4 rounded-xl liquid-glass border border-black/10 space-y-2">
-            <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-neutral-800 mb-2">
-              Key Engineering Features
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {project.details.map((spec, sIdx) => (
-                <div key={sIdx} className="flex items-center gap-2 text-xs text-neutral-700">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-neutral-900 shrink-0" />
-                  <span>{spec}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Pure Liquid Glass Tech Stack Chips */}
-        <div className="relative z-10 flex flex-wrap gap-2 mt-auto pt-4 border-t border-black/5">
+        {/* Bottom Tech Stack Chips Container */}
+        <div className="relative z-10 flex flex-wrap gap-2 pt-4 border-t border-black/5 mt-auto">
           {project.techStack.map((tech) => (
             <NeuChip
               key={tech}
