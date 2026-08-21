@@ -26,7 +26,7 @@ export default function ContactSection() {
       particleCount: 100,
       spread: 80,
       origin: { y: 0.7 },
-      colors: ['#FFFFFF', '#E0E0E0', '#A0A0A0', '#606060'],
+      colors: ['#0A0A0A', '#404040', '#737373', '#D4D4D4'],
     });
 
     const resumeWindow = window.open('', '_blank');
@@ -37,11 +37,11 @@ export default function ContactSection() {
           <head>
             <title>Pradeep H — Resume</title>
             <style>
-              body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; color: #ffffff; background: #08080a; line-height: 1.6; }
-              h1 { color: #ffffff; margin-bottom: 4px; font-size: 28px; }
-              h2 { color: #e0e0e0; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 4px; margin-top: 24px; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
-              p, li { font-size: 14px; color: #b0b0b0; }
-              .meta { font-family: monospace; font-size: 12px; color: #888888; margin-bottom: 20px; }
+              body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; color: #111111; background: #ffffff; line-height: 1.6; }
+              h1 { color: #000000; margin-bottom: 4px; font-size: 28px; }
+              h2 { color: #333333; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px; margin-top: 24px; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
+              p, li { font-size: 14px; color: #444444; }
+              .meta { font-family: monospace; font-size: 12px; color: #666666; margin-bottom: 20px; }
             </style>
           </head>
           <body>
@@ -102,32 +102,32 @@ export default function ContactSection() {
           className="lg:col-span-5 flex flex-col gap-6"
         >
           <GlassPanel className="p-8 sm:p-10">
-            <h3 className="font-serif text-3xl text-white mb-4">
+            <h3 className="font-serif text-3xl text-neutral-900 mb-4">
               Reach Out Directly
             </h3>
-            <p className="text-sm text-white/65 leading-relaxed mb-8">
+            <p className="text-sm text-neutral-600 leading-relaxed mb-8">
               I am open to embedded engineering, firmware, and full-stack developer roles. If you have a project or position that fits my background, my inbox is open.
             </p>
 
             {/* Email pill with glass copy button */}
-            <div className="p-4 rounded-2xl liquid-glass border border-white/12 mb-6">
-              <div className="text-[11px] font-mono uppercase tracking-wider text-white/50 font-semibold mb-1.5 flex items-center gap-1.5">
-                <Mail className="w-3.5 h-3.5 text-white/80" />
+            <div className="p-4 rounded-2xl liquid-glass border border-black/10 mb-6">
+              <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-500 font-semibold mb-1.5 flex items-center gap-1.5">
+                <Mail className="w-3.5 h-3.5 text-neutral-700" />
                 Direct Email
               </div>
               <div className="flex items-center justify-between gap-2">
                 <a
                   href={`mailto:${PERSONAL_INFO.email}`}
-                  className="font-mono text-sm sm:text-base font-bold text-white hover:text-white/80 transition-colors truncate"
+                  className="font-mono text-sm sm:text-base font-bold text-neutral-900 hover:text-black transition-colors truncate"
                 >
                   {PERSONAL_INFO.email}
                 </a>
                 <button
                   onClick={handleCopyEmail}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass-btn-secondary text-xs font-semibold text-white transition-all cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass-btn-secondary text-xs font-semibold text-neutral-900 transition-all cursor-pointer"
                   aria-label="Copy email"
                 >
-                  {copiedEmail ? <Check className="w-3.5 h-3.5 text-white" /> : <Copy className="w-3.5 h-3.5" />}
+                  {copiedEmail ? <Check className="w-3.5 h-3.5 text-black" /> : <Copy className="w-3.5 h-3.5" />}
                   {copiedEmail ? 'Copied' : 'Copy'}
                 </button>
               </div>
@@ -135,40 +135,40 @@ export default function ContactSection() {
 
             {/* Location & Links with Pure Glass Wells */}
             <div className="space-y-3.5 mb-8">
-              <div className="flex items-center gap-3.5 text-sm text-white/70">
-                <NeuIconWell size="sm" icon={<MapPin className="w-4 h-4 text-white/80" />} />
+              <div className="flex items-center gap-3.5 text-sm text-neutral-700">
+                <NeuIconWell size="sm" icon={<MapPin className="w-4 h-4 text-neutral-800" />} />
                 <span>JP Nagar, Bengaluru, Karnataka, India</span>
               </div>
 
-              <div className="flex items-center gap-3.5 text-sm text-white/70">
+              <div className="flex items-center gap-3.5 text-sm text-neutral-700">
                 <NeuIconWell
                   size="sm"
                   href={PERSONAL_INFO.github}
                   label="GitHub"
-                  icon={<GithubIcon className="w-4 h-4 text-white/80" />}
+                  icon={<GithubIcon className="w-4 h-4 text-neutral-800" />}
                 />
                 <a
                   href={PERSONAL_INFO.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors underline-offset-4 hover:underline"
+                  className="hover:text-black transition-colors underline-offset-4 hover:underline"
                 >
                   github.com/PRADXP007
                 </a>
               </div>
 
-              <div className="flex items-center gap-3.5 text-sm text-white/70">
+              <div className="flex items-center gap-3.5 text-sm text-neutral-700">
                 <NeuIconWell
                   size="sm"
                   href={PERSONAL_INFO.linkedin}
                   label="LinkedIn"
-                  icon={<LinkedinIcon className="w-4 h-4 text-white/80" />}
+                  icon={<LinkedinIcon className="w-4 h-4 text-neutral-800" />}
                 />
                 <a
                   href={PERSONAL_INFO.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors underline-offset-4 hover:underline"
+                  className="hover:text-black transition-colors underline-offset-4 hover:underline"
                 >
                   linkedin.com/in/pradeeph007
                 </a>
@@ -196,10 +196,10 @@ export default function ContactSection() {
           className="lg:col-span-7"
         >
           <GlassPanel variant="card" className="p-8 sm:p-12">
-            <h3 className="font-serif text-2xl sm:text-3xl text-white mb-2">
+            <h3 className="font-serif text-2xl sm:text-3xl text-neutral-900 mb-2">
               Send a Message
             </h3>
-            <p className="text-xs sm:text-sm text-white/60 mb-8">
+            <p className="text-xs sm:text-sm text-neutral-500 mb-8">
               Drop a note below and it will open directly in your mail client.
             </p>
 
@@ -244,7 +244,7 @@ export default function ContactSection() {
               </NeuButton>
 
               {submitted && (
-                <div className="p-4 rounded-xl liquid-glass border border-white/20 text-xs text-white font-medium text-center">
+                <div className="p-4 rounded-xl liquid-glass border border-black/10 text-xs text-neutral-900 font-medium text-center">
                   Your email client has been opened with your message pre-filled.
                 </div>
               )}

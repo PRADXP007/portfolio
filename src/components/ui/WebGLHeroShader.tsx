@@ -97,16 +97,16 @@ export default function WebGLHeroShader() {
         
         vec2 mouse_st = (u_mouse / u_resolution) * aspect;
         float mouse_dist = length(st - mouse_st);
-        float mouse_glow = smoothstep(0.4, 0.0, mouse_dist) * 0.25;
+        float mouse_glow = smoothstep(0.4, 0.0, mouse_dist) * 0.15;
         
         float node = smoothstep(0.005, 0.001, dist) * (0.3 + 0.7 * sin(u_time * 1.2 + node_pos.x * 10.0 + node_pos.y * 7.0));
         
-        // Pure monochrome light fields on dark background
-        float intensity = lines * 0.06 + node * 0.2 + mouse_glow;
-        vec3 darkCanvas = vec3(0.031, 0.031, 0.039);
-        vec3 lightBloom = vec3(0.85, 0.85, 0.9);
+        // Subtle soft gray light fields on off-white background
+        float intensity = lines * 0.03 + node * 0.08 + mouse_glow;
+        vec3 offWhiteCanvas = vec3(0.972, 0.972, 0.98);
+        vec3 shadowBloom = vec3(0.82, 0.82, 0.85);
         
-        vec3 color = mix(darkCanvas, lightBloom, clamp(intensity, 0.0, 1.0));
+        vec3 color = mix(offWhiteCanvas, shadowBloom, clamp(intensity, 0.0, 1.0));
         
         gl_FragColor = vec4(color, 1.0);
       }
@@ -212,7 +212,7 @@ export default function WebGLHeroShader() {
   }
 
   return (
-    <div ref={containerRef} className="absolute inset-0 pointer-events-none opacity-60 overflow-hidden -z-10">
+    <div ref={containerRef} className="absolute inset-0 pointer-events-none opacity-50 overflow-hidden -z-10">
       <canvas
         ref={canvasRef}
         className="w-full h-full block"

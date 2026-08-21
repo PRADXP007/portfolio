@@ -12,15 +12,15 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative w-full border-t border-white/10 bg-transparent pt-16 pb-12 overflow-hidden">
+    <footer className="relative w-full border-t border-black/10 bg-transparent pt-16 pb-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pb-12 border-b border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pb-12 border-b border-black/10">
           {/* Col 1: Brand & Tagline */}
           <div className="md:col-span-5">
-            <h3 className="font-serif text-3xl sm:text-4xl text-white font-medium tracking-tight mb-2">
+            <h3 className="font-serif text-3xl sm:text-4xl text-neutral-900 font-medium tracking-tight mb-2">
               Pradeep H
             </h3>
-            <p className="font-sans text-sm text-white/60 leading-relaxed max-w-sm">
+            <p className="font-sans text-sm text-neutral-600 leading-relaxed max-w-sm">
               ECE Student · Embedded Systems & Full-Stack Developer at Jain University, Bengaluru.
             </p>
           </div>
@@ -30,17 +30,17 @@ export default function Footer() {
             <NeuIconWell
               href={`mailto:${PERSONAL_INFO.email}`}
               label="Email Pradeep"
-              icon={<Mail className="w-4 h-4 text-white/80" />}
+              icon={<Mail className="w-4 h-4 text-neutral-700" />}
             />
             <NeuIconWell
               href={PERSONAL_INFO.github}
               label="GitHub Profile"
-              icon={<GithubIcon className="w-4 h-4 text-white/80" />}
+              icon={<GithubIcon className="w-4 h-4 text-neutral-700" />}
             />
             <NeuIconWell
               href={PERSONAL_INFO.linkedin}
               label="LinkedIn Profile"
-              icon={<LinkedinIcon className="w-4 h-4 text-white/80" />}
+              icon={<LinkedinIcon className="w-4 h-4 text-neutral-700" />}
             />
           </div>
 
@@ -58,7 +58,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom copyright row */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/40">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
           <p>© {new Date().getFullYear()} Pradeep H. Built with Next.js, TypeScript, and Tailwind CSS.</p>
           <p className="font-mono text-[11px]">Bengaluru, India · 12.9716° N, 77.5946° E</p>
         </div>

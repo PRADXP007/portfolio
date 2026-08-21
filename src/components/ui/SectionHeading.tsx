@@ -29,19 +29,19 @@ export default function SectionHeading({
       className={`mb-16 md:mb-20 ${isCenter ? 'text-center' : ''} ${className}`}
     >
       <div className={`flex items-center gap-3 mb-3 ${isCenter ? 'justify-center' : ''}`}>
-        <div className="h-[1px] w-6 bg-white/20" />
-        <span className="font-sans text-[11px] md:text-xs font-semibold tracking-[0.2em] text-white/60 uppercase">
+        <div className="h-[1px] w-6 bg-black/20" />
+        <span className="font-sans text-[11px] md:text-xs font-semibold tracking-[0.2em] text-neutral-500 uppercase">
           {label}
         </span>
-        <div className="h-[1px] w-6 bg-white/20" />
+        <div className="h-[1px] w-6 bg-black/20" />
       </div>
 
-      <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white tracking-tight font-normal leading-[1.15] mb-4">
+      <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-neutral-900 tracking-tight font-normal leading-[1.15] mb-4">
         {title}
       </h2>
 
       {subtitle && (
-        <p className="font-sans text-base sm:text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
+        <p className="font-sans text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
           {subtitle}
         </p>
       )}

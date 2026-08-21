@@ -43,15 +43,15 @@ export default function SkillsSection() {
               >
                 <div>
                   {/* Category Header */}
-                  <div className="flex items-center gap-4 pb-4 mb-4 border-b border-white/10">
-                    <div className="p-3 rounded-xl liquid-glass border border-white/15 text-white">
+                  <div className="flex items-center gap-4 pb-4 mb-4 border-b border-black/10">
+                    <div className="p-3 rounded-xl liquid-glass border border-black/10 text-neutral-900">
                       <Icon className="w-6 h-6" />
                     </div>
                     <div>
-                      <h3 className="font-serif text-2xl sm:text-3xl text-white">
+                      <h3 className="font-serif text-2xl sm:text-3xl text-neutral-900">
                         {category.title}
                       </h3>
-                      <p className="text-xs font-sans text-white/50 font-semibold uppercase tracking-wider mt-0.5">
+                      <p className="text-xs font-sans text-neutral-500 font-semibold uppercase tracking-wider mt-0.5">
                         {category.subtitle}
                       </p>
                     </div>

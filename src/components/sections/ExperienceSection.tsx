@@ -21,14 +21,14 @@ export default function ExperienceSection() {
         {/* Left Side: Summary Note */}
         <div className="lg:col-span-4 lg:sticky lg:top-32 self-start">
           <GlassPanel className="p-8 sm:p-10">
-            <h3 className="font-serif text-3xl sm:text-4xl text-white mb-4">
+            <h3 className="font-serif text-3xl sm:text-4xl text-neutral-900 mb-4">
               Work & Training
             </h3>
-            <p className="text-sm sm:text-base text-white/65 leading-relaxed mb-6">
+            <p className="text-sm sm:text-base text-neutral-600 leading-relaxed mb-6">
               Practical experience from building design system components at ITC Infotech to completing Anthropic&apos;s developer certification on Claude and tool use.
             </p>
-            <div className="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-white/60">
-              <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
+            <div className="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-neutral-500">
+              <span className="w-2 h-2 rounded-full bg-black shadow-sm" />
               Bengaluru, India
             </div>
           </GlassPanel>
@@ -53,55 +53,55 @@ export default function ExperienceSection() {
                   className="relative group"
                 >
                   {/* Timeline Glass Node Marker */}
-                  <div className="absolute -left-[27px] sm:-left-[39px] top-6 w-8 h-8 rounded-full bg-[#08080A] border-2 border-white/50 shadow-md flex items-center justify-center group-hover:scale-125 group-hover:border-white transition-all duration-300 z-10">
-                    <div className="w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_6px_rgba(255,255,255,0.9)]" />
+                  <div className="absolute -left-[27px] sm:-left-[39px] top-6 w-8 h-8 rounded-full bg-white border-2 border-neutral-700 shadow-sm flex items-center justify-center group-hover:scale-125 group-hover:border-black transition-all duration-300 z-10">
+                    <div className="w-2.5 h-2.5 rounded-full bg-black" />
                   </div>
 
                   <GlassPanel variant="card" hoverEffect className="p-8 sm:p-10">
                     {/* Header: Organization & Period */}
-                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3 pb-3 border-b border-white/10">
+                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3 pb-3 border-b border-black/10">
                       <div className="flex items-center gap-3">
-                        <h3 className="font-serif text-2xl sm:text-3xl text-white font-medium">
+                        <h3 className="font-serif text-2xl sm:text-3xl text-neutral-900 font-medium">
                           {item.organization}
                         </h3>
-                        <span className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full liquid-glass border border-white/15 text-white/85">
+                        <span className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full liquid-glass border border-black/10 text-neutral-700">
                           {isCert ? (
-                            <Award className="w-3 h-3 text-white/70" />
+                            <Award className="w-3 h-3 text-neutral-600" />
                           ) : (
-                            <Briefcase className="w-3 h-3 text-white/70" />
+                            <Briefcase className="w-3 h-3 text-neutral-600" />
                           )}
                           {item.badge}
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-1.5 text-xs font-mono font-medium text-white/50">
+                      <div className="flex items-center gap-1.5 text-xs font-mono font-medium text-neutral-500">
                         <Calendar className="w-3.5 h-3.5" />
                         {item.period}
                       </div>
                     </div>
 
                     {/* Role Title */}
-                    <h4 className="font-sans text-base sm:text-lg font-bold text-white/90 mb-4">
+                    <h4 className="font-sans text-base sm:text-lg font-bold text-neutral-900 mb-4">
                       {item.role}
                     </h4>
 
                     {/* Description */}
-                    <p className="text-sm text-white/65 leading-relaxed mb-6">
+                    <p className="text-sm text-neutral-600 leading-relaxed mb-6">
                       {item.description}
                     </p>
 
                     {/* Highlights List */}
                     <div className="space-y-2 mb-6">
                       {item.highlights.map((highlight, hIdx) => (
-                        <div key={hIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-white/65">
-                          <CheckCircle2 className="w-4 h-4 text-white/80 shrink-0 mt-0.5" />
+                        <div key={hIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-600">
+                          <CheckCircle2 className="w-4 h-4 text-neutral-700 shrink-0 mt-0.5" />
                           <span>{highlight}</span>
                         </div>
                       ))}
                     </div>
 
                     {/* Skills Tag Cloud */}
-                    <div className="flex flex-wrap gap-2 pt-4 border-t border-white/10">
+                    <div className="flex flex-wrap gap-2 pt-4 border-t border-black/10">
                       {item.skills.map((skill) => (
                         <NeuChip
                           key={skill}

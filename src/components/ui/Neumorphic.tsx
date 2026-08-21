@@ -24,12 +24,12 @@ export function NeuButton({
   ...props
 }: NeuButtonProps) {
   const baseStyles =
-    'group relative inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-sans text-xs font-bold tracking-widest uppercase transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08080A]';
+    'group relative inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-sans text-xs font-bold tracking-widest uppercase transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-[#F8F8FA]';
 
   const variantStyles = {
     primary: 'glass-btn-primary',
     secondary: 'glass-btn-secondary',
-    maroon: 'glass-btn-primary shadow-[0_0_20px_rgba(255,255,255,0.15)]',
+    maroon: 'glass-btn-primary shadow-[0_4px_16px_rgba(0,0,0,0.15)]',
   };
 
   const combinedClasses = `${baseStyles} ${variantStyles[variant]} ${className}`;
@@ -76,15 +76,15 @@ export function NeuChip({
       tabIndex={isClickable ? 0 : undefined}
       className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150 select-none ${
         active
-          ? 'bg-white/20 border border-white/40 text-white font-semibold shadow-[0_0_15px_rgba(255,255,255,0.15)]'
+          ? 'bg-neutral-900 border border-neutral-900 text-white font-semibold shadow-sm'
           : 'glass-chip'
-      } ${isClickable ? 'cursor-pointer hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-white' : 'cursor-default'} ${className}`}
+      } ${isClickable ? 'cursor-pointer hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-black' : 'cursor-default'} ${className}`}
     >
       <span>{label}</span>
       {tag && (
         <span
           className={`text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded ${
-            active ? 'bg-white text-black' : 'bg-white/10 text-white/70 border border-white/10'
+            active ? 'bg-white text-black' : 'bg-black/5 text-neutral-600 border border-black/5'
           }`}
         >
           {tag}
@@ -118,8 +118,8 @@ export function NeuIconWell({
     lg: 'w-12 h-12 p-3 text-base',
   };
 
-  const baseStyles = `inline-flex items-center justify-center rounded-xl liquid-glass transition-all duration-200 text-white/80 hover:text-white hover:border-white/35 hover:bg-white/10 ${
-    active ? 'bg-white/20 border-white/40 text-white' : ''
+  const baseStyles = `inline-flex items-center justify-center rounded-xl liquid-glass transition-all duration-200 text-neutral-700 hover:text-black hover:border-black/20 hover:bg-white ${
+    active ? 'bg-black text-white border-black' : ''
   } ${sizeMap[size]} ${className}`;
 
   if (href) {
@@ -129,7 +129,7 @@ export function NeuIconWell({
         target="_blank"
         rel="noopener noreferrer"
         aria-label={label}
-        className={`${baseStyles} hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-white/80`}
+        className={`${baseStyles} hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-black`}
       >
         {icon}
       </a>
@@ -151,12 +151,12 @@ interface NeuInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export function NeuInput({ label, id, className = '', ...props }: NeuInputProps) {
   return (
     <div>
-      <label htmlFor={id} className="block text-xs font-bold uppercase tracking-wider text-white/90 mb-2">
+      <label htmlFor={id} className="block text-xs font-bold uppercase tracking-wider text-neutral-800 mb-2">
         {label}
       </label>
       <input
         id={id}
-        className={`w-full px-4 py-3 rounded-xl glass-input text-sm text-white placeholder-white/30 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 ${className}`}
+        className={`w-full px-4 py-3 rounded-xl glass-input text-sm text-neutral-900 placeholder-neutral-400 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black ${className}`}
         {...props}
       />
     </div>
@@ -171,12 +171,12 @@ interface NeuTextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElem
 export function NeuTextarea({ label, id, className = '', ...props }: NeuTextareaProps) {
   return (
     <div>
-      <label htmlFor={id} className="block text-xs font-bold uppercase tracking-wider text-white/90 mb-2">
+      <label htmlFor={id} className="block text-xs font-bold uppercase tracking-wider text-neutral-800 mb-2">
         {label}
       </label>
       <textarea
         id={id}
-        className={`w-full px-4 py-3 rounded-xl glass-input text-sm text-white placeholder-white/30 transition-all duration-150 resize-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 ${className}`}
+        className={`w-full px-4 py-3 rounded-xl glass-input text-sm text-neutral-900 placeholder-neutral-400 transition-all duration-150 resize-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black ${className}`}
         {...props}
       />
     </div>
